@@ -10,15 +10,9 @@ async function openDB() {
     return db;
 }
 
-async function getPlayers() {
-    const db = await openDB();
-    const players = await db.all(`SELECT * FROM players`);
-    return players;
-}
-
 async function getStats(playerID) {
     const db = await openDB();
-    const gameResults = await db.all(`SELECT whiteID, blackID, result FROM games WHERE whiteID = ${playerID} OR blackID = ${playerID}`);
+    const gameResults = await db.all(`SELECT whiteID, blackID, result FROM games WHERE whiteID = ? OR blackID = ?`, playerID, playerID);
     let draws = 0;
     let wins = 0;
     let losses = 0;
@@ -31,8 +25,23 @@ async function getStats(playerID) {
             losses ++;
         }
     });
-    return [wins, draws, losses];
+    return([wins, draws, losses]);
+}
+
+async function getPlayers() {
+    const db = await openDB();
+    const players = await db.all(`SELECT * FROM players`);
+    for await (const player of players) {
+        let WDL = await getStats(player.playerID);
+        player.wins = WDL[0];
+        player.draws = WDL[1];
+        player.losses = WDL[2];
+    }
+    players.sort((a, b) => parseInt(b.wins) - parseInt(a.wins));
+    return players;
 }
 
 
-module.exports = {getPlayers, getStats};
+getPlayers();
+
+module.exports = getPlayers;

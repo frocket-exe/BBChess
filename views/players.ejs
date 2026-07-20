@@ -19,7 +19,7 @@
                         <img src="/images/profiles/<%= player.photoPath %>" alt="Player 1 profile photo">
                         <div>
                             <h3><%=player.fName %><span class="nickname"><%= (player.nickName) ? (' "' + player.nickName + '"') : ""%></span> <%=player.sName%></h3>
-                            <p>3/2/1</p>
+                            <p><%=player.wins%>/<%=player.draws%>/<%=player.losses%></p>
                         </div>
                     </div>
                 <!-- </a> -->

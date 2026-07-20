@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <title>BBChess - Players</title>
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+    </head>
+
+    <body>
+
+        <h1 class="heading">Players</h1>
+        <a href="/">Back to home</a>
+        <br>
+        <h2>Players:</h2>
+        <div class="players-container">
+            <% playerData.forEach(player => { %>
+                <!-- <a href="/players/<%= player.fName%>"> -->
+                    <div class = player>
+                        <img src="/images/profiles/<%= player.photoPath %>" alt="Player 1 profile photo">
+                        <div>
+                            <h3><%=player.fName %><span class="nickname"><%= (player.nickName) ? (' "' + player.nickName + '"') : ""%></span> <%=player.sName%></h3>
+                            <p>3/2/1</p>
+                        </div>
+                    </div>
+                <!-- </a> -->
+            <% }); %>
+        </div>
+
+    </body>
+
+
+</html>

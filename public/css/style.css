@@ -47,3 +47,8 @@
     font-size: large;
     margin-left: 10px;
 }
+
+.nickname{
+    font-style: italic;
+    font-size: 24px;
+}

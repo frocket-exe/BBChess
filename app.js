@@ -4,7 +4,7 @@ const path = require('path');
 const port = 3000;
 const asyncHandler = require('express-async-handler');
 
-const getPlayers = require('./database');
+const dbFunctions = require('./database');
 
 app.use(express.static('public'));
 app.set("view engine","ejs");
@@ -14,7 +14,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/players', asyncHandler(async (req, res) => {
-    const playerData = await getPlayers();
+    const playerData = await dbFunctions.getPlayers();
     if(!playerData) {
         res.status(404);
         throw new Error('Players not found');
@@ -23,11 +23,17 @@ app.get('/players', asyncHandler(async (req, res) => {
     }
 }));
 
-// app.get('/players', (req, res) => {
-//     const playerData = getPlayers();
-//     console.log(playerData);
-//     res.render('players', {playerData: playerData});
-// });
+app.get('/players/:id', asyncHandler(async (req, res) => {
+  const playerID = await dbFunctions.slugToID(req.params.id)
+  const playerObj = await dbFunctions.getPlayerData(playerID);
+  if(!playerObj) {
+        res.status(404);
+        throw new Error('Players not found');
+    } else {
+    res.render('player', {player: playerObj});
+    }
+  // res.render('player-test', {player: req.params.id});
+}));
 
 app.get('/tournaments', (req, res) => {
     res.sendFile(path.join(__dirname, '/views/tournaments.html'));

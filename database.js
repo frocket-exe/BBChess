@@ -10,6 +10,13 @@ async function openDB() {
     return db;
 }
 
+async function getAge(dob) {
+    const dateOfBirth = Date.parse(dob);
+    var diff_ms = Date.now() - dateOfBirth;
+    var age_dt = new Date(diff_ms); 
+    return Math.abs(age_dt.getUTCFullYear() - 1970);
+}
+
 async function getStats(playerID) {
     const db = await openDB();
     const gameResults = await db.all(`SELECT whiteID, blackID, result FROM games WHERE whiteID = ? OR blackID = ?`, playerID, playerID);
@@ -25,7 +32,7 @@ async function getStats(playerID) {
             losses ++;
         }
     });
-    return([wins, draws, losses]);
+    return([wins, losses, draws]);
 }
 
 async function getPlayers() {
@@ -41,32 +48,67 @@ async function getPlayers() {
     return players;
 }
 
-async function getPlayerGames(playerID) {
+async function getPlayerData(playerID) {
     const db = await openDB();
     const player = await db.get(`SELECT * FROM players WHERE playerID = ?`, playerID);
-    const lichessData = (await fetch("https://lichess.org/api/user/" + player.lichessUN)).json();
-    const chessComData = (await fetch("https://api.chess.com/pub/player/" + player.chessComUN + "/stats")).json();
-    const tournaments = await db.all(`SELECT * FROM tournamentPlayers WHERE playerID = ?`, playerID);
+    player.age = await getAge(player.dob);
+    let WDL = await getStats(player.playerID);
+    player.wins = WDL[0];
+    player.draws = WDL[1];
+    player.losses = WDL[2];
+    const lichessData = (await fetch("https://lichess.org/api/user/" + player.lichessUN))
+    const lichessDataJson = await lichessData.json();
+    const lichessElo = (lichessDataJson.perfs.rapid.rating);
+    player.rating = {};
+    player.rating.lichessElo = lichessElo;
+    const chessComData = (await fetch("https://api.chess.com/pub/player/" + player.chessComUN + "/stats"));
+    const chessComDataJson = await chessComData.json();
+    const chessComLastElo = chessComDataJson.chess_rapid.last.rating;
+    const chessComBestElo = chessComDataJson.chess_rapid.best.rating;
+    player.rating.chessComBestElo = chessComBestElo;
+    player.rating.chessComLastElo = chessComLastElo;
+    player.links = {'lichess': 'https://lichess.org/@/' + player.lichessUN, 'chessCom': 'https://chess.com/member/' + player.chessComUN};
+    const tournaments = await db.all(`SELECT tournamentID, finalPosition FROM tournamentPlayers WHERE playerID = ?`, playerID);
+    for await (const tournament of tournaments) {
+        tournamentName = await db.get(`SELECT name FROM tournaments WHERE tournamentID = ?`, tournament.tournamentID);
+        tournament.name = tournamentName.name;
+    }
+    player.tournaments = tournaments;
     const games = await db.all(`SELECT * FROM games WHERE whiteID = ? OR blackID = ?`, playerID, playerID);
-    console.log(player);
-    console.log(lichessData);
-    console.log(chessComData);
-    console.log(tournaments);
-    console.log(games);
+    games.sort((a, b) => parseInt(b.date) - parseInt(a.date));
+    for await(const game of games) {
+        if(game.result == '1/2-1/2') {
+            game.resultStr = "Draw";
+        } else if ((game.result == '1-0' && game.whiteID == playerID) || (game.result == '0-1' && game.blackID == playerID)) {
+            game.resultStr = "Win";
+        } else {
+            game.resultStr = "Loss";
+        }
+        const whiteName = await db.get(`SELECT fName FROM players WHERE playerID = ?`, game.whiteID);
+        const blackName = await db.get(`SELECT fName FROM players WHERE playerID = ?`, game.blackID);
+        game.whiteName = whiteName.fName;
+        game.blackName = blackName.fName;
+    };
+    player.games = games;
+    return(player);
+}
+
+async function slugToID(playerSlug) {
+    const db = await openDB();
+    const player = await db.get(`SELECT playerID FROM players WHERE fName = ?`, playerSlug);
+    return (player.playerID);
 }
 
 async function pgnToURL(pgn) {
-    // 1. Clean the PGN string to fix formatting issues
-    const cleanedPgn = pgn.trim().replace(/^\s+/gm, '');
-
     const formData = new URLSearchParams();
-    formData.append('pgn', cleanedPgn);
+    formData.append('pgn', pgn);
 
     try {
-        const response = await fetch("https://lichess.org", {
+        const response = await fetch("https://lichess.org/api/import", {
             method: "POST",
             headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'Accept': 'application/json'
             },
             body: formData
         });
@@ -86,18 +128,5 @@ async function pgnToURL(pgn) {
 }
 
 
-// getPlayerGames(1);
-pgn = `[Event "WNRRR"]
-[Site "?"]
-[Date "2025.12.23"]
-[Round "?"]
-[White "Sam"]
-[Black "John"]
-[Result "1-0"]
-[WhiteElo "?"]
-[BlackElo "?"]
 
-1. d4 d5 2. e4 e6 3. Nc3 Nc6 4. Nf3 Bb4 5. Bd3 Nf6 6. O-O g6 7. exd5 Ne7 8. dxe6 fxe6 9. Bh6 Kf7 10. Ne5+ Kg8 11. Qf3 Nf5 12. Bxf5 exf5 13. a3 Qd6 14. axb4 Bd7 15. Qxb7 Re8 16. Ra6 Qxd4 17. Nxd7 Qxd7 18. Rxf6 Qd4 19. Qd5+ Qxd5 20. Nxd5 c6 21. Nf4 a6 22. Ne6 a5 23. Rf8+ Rxf8 24. Bxf8 Kf7 25. Re1 h6 26. Bg7 Rg8 27. Bxh6 Re8 28. Ng5+ Kf6 29. Rxe8 c5 30. Re6#* 1-0`
-pgnToURL(pgn);
-
-module.exports = getPlayers;
+module.exports = {getPlayers, getPlayerData, slugToID};

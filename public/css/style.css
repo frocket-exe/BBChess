@@ -53,3 +53,28 @@
     font-style: italic;
     font-size: 24px;
 }
+
+/* PLAYER CSS */
+
+.profile-head{
+    display: flex;
+    flex-direction: row;
+    background-color: beige;
+    justify-content:baseline;
+    gap: 50px;
+}
+
+.game-card{
+    display: flex;
+    flex-direction: row;
+    background-color: beige;
+    margin-left: 30px;
+    margin-right: 60px;
+    margin-bottom: 10px;
+    justify-content: baseline;
+    gap: 50px;
+    height: 100px;
+    font-size: 50px;
+    align-items: center;
+    padding-left: 40px;
+}

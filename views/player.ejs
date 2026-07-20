@@ -47,9 +47,9 @@
             <% player.games.forEach(game => { %>
                 <div class="game-card">
                     <p class="result-<%=game.resultStr%>"><%=game.resultStr%></p>
-                    <p><span style="background-color: white; border-radius: 15px;">White</span> - <%=game.whiteName%></p>
+                    <p><span style="background-color: white; border-radius: 15px;">White</span> - <a style="font-weight:inherit; color:inherit;text-decoration:none;" href="/players/<%=game.whiteName%>"><%=game.whiteName%></a></p>
                     <p><%=game.result%></p>
-                    <p><%=game.blackName%> - <span style="background-color: rgb(24, 24, 24); border-radius: 15px; color: rgb(231, 231, 231);">Black</span></p>
+                    <p><a style="font-weight:inherit; color:inherit;text-decoration:none;" href="/players/<%=game.blackName%>"><%=game.blackName%></a> - <span style="background-color: rgb(24, 24, 24); border-radius: 15px; color: rgb(231, 231, 231);">Black</span></p>
                     <p><%=game.date%></p>
                     <a target="_blank" href="https://lichess.org/<%=game.link%>"><%= (game.link) ? "View game" : ""%></a>
                 </div>

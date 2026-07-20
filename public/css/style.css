@@ -31,6 +31,7 @@
     height: 150px;
     width: 150px;
     align-self: center;
+    margin-right: 10px;
 }
 
 .player-info{
@@ -45,7 +46,7 @@
 
 .player p{
     font-size: large;
-    margin-left: 10px;
+    margin-left: 5px;
 }
 
 .nickname{

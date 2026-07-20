@@ -56,11 +56,11 @@ async function getPlayerData(playerID) {
     player.wins = WDL[0];
     player.draws = WDL[1];
     player.losses = WDL[2];
-    const lichessData = (await fetch("https://lichess.org/api/user/" + player.lichessUN))
-    const lichessDataJson = await lichessData.json();
-    const lichessElo = (lichessDataJson.perfs.rapid.rating);
+    // const lichessData = (await fetch("https://lichess.org/api/user/" + player.lichessUN))
+    // const lichessDataJson = await lichessData.json();
+    // const lichessElo = (lichessDataJson.perfs.rapid.rating);
     player.rating = {};
-    player.rating.lichessElo = lichessElo;
+    // player.rating.lichessElo = lichessElo;
     const chessComData = (await fetch("https://api.chess.com/pub/player/" + player.chessComUN + "/stats"));
     const chessComDataJson = await chessComData.json();
     const chessComLastElo = chessComDataJson.chess_rapid.last.rating;
@@ -126,7 +126,6 @@ async function pgnToURL(pgn) {
         console.error('Error importing PGN:', error);
     }
 }
-
 
 
 module.exports = {getPlayers, getPlayerData, slugToID};

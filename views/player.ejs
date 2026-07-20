@@ -8,12 +8,12 @@
 
     <body>
         <div class="profile-head">
-            <div>
+            <div style="width: 5vw;">
                 <a href="/players">Back to players</a>
                 <br>
                 <a href="/">Back to home</a>
             </div>
-            <div>
+            <div style="width: 28vw;">
                 <h1 class="heading"><%=player.fName %><span class="nickname"><%= (player.nickName) ? (' "' + player.nickName + '"') : ""%></span> <%=player.sName%></h1>
                 <p><span style="color: green;"><%=player.wins%></span>/<span style="color: red;"><%=player.losses%></span>/<%=player.draws%></p>
                 <p>Age: <%=player.age%></p>
@@ -46,12 +46,12 @@
             <h2>Games:</h2>
             <% player.games.forEach(game => { %>
                 <div class="game-card">
-                    <p><%=game.resultStr%></p>
-                    <p>White: <%=game.whiteName%></p>
+                    <p class="result-<%=game.resultStr%>"><%=game.resultStr%></p>
+                    <p><span style="background-color: white; border-radius: 15px;">White</span> - <%=game.whiteName%></p>
                     <p><%=game.result%></p>
-                    <p>Black: <%=game.blackName%></p>
+                    <p><%=game.blackName%> - <span style="background-color: rgb(24, 24, 24); border-radius: 15px; color: rgb(231, 231, 231);">Black</span></p>
                     <p><%=game.date%></p>
-                    <a href=<%=game.link%>><%= (game.link) ? "View game" : ""%></a>
+                    <a target="_blank" href="https://lichess.org/<%=game.link%>"><%= (game.link) ? "View game" : ""%></a>
                 </div>
             <% }); %>
         </div>

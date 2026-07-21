@@ -216,6 +216,14 @@ async function getTournamentData(tournamentSlug) {
     tournament.timeControl = timeCon;
     const status = getTense(tournament.startDate, tournament.endDate);
     tournament.status = status;
+    const players = await db.all(`SELECT * FROM tournamentPlayers WHERE tournamentID = ?`, tournament.tournamentID);
+    for await (const player of players) {
+        const playerInfo = await db.get(`SELECT fName, sName FROM players WHERE playerID = ?`, player.playerID);
+        player.fName = playerInfo.fName;
+        player.sName = playerInfo.sName;
+    }
+    players.sort((a, b) => parseInt(a.finalPosition) - parseInt(b.finalPosition));
+    tournament.players = players;
     const games = await db.all(`SELECT * FROM games WHERE tournamentID = ?`, tournament.tournamentID);
     for await (const game of games) {
         const whitePlayer = await db.get(`SELECT fName FROM players WHERE playerID = ?`, game.whiteID);

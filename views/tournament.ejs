@@ -14,16 +14,23 @@
                 <a href="/">Back to home</a>
             </div>
             <div>
+                <img src="/images/tournaments/<%=tournament.photoPath%>" alt="Cover photo for the tournament">
             </div>
             <div style="width: 28vw;">
                 <h1 class="heading"><%=tournament.name %></h1>
+                <p><%= tournament.description %></p>
+                <p><%= tournament.startDate %> - <%= tournament.endDate %></p>
+                <p>⌛ <%= tournament.timeControl %> (<%= tournament.baseTime %> + <%= tournament.bonusTime %>)</p>
             </div>
-            <div>
-                
-            </div>
-            <div>
-                
-            </div>
+        </div>
+        <div>
+            <h2 class="section-title">Rankings:</h2>
+            <% tournament.players.forEach(player => { %>
+                <div>
+                    <p><%= player.finalPosition %></p>
+                    <a href="/players/<%= player.fName %>" style="font-weight:inherit; color:inherit;text-decoration:none;"><%= player.fName %><%= player.sName %></a>
+                </div>
+            <% }); %>
         </div>
         <div>
             <h2 class="section-title">Games:</h2>

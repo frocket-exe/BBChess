@@ -160,5 +160,52 @@ async function pgnToURL(pgn) {
     }
 }
 
+function timeControl(startTime) {
+    let timeControlStr;
+    if (startTime < 3) {
+        timeControlStr = "Bullet";
+    } else if (startTime < 10) {
+        timeControlStr = "Blitz";
+    } else if (startTime < 60) {
+        timeControlStr = "Rapid";
+    } else {
+        timeControlStr = "Classical";
+    }
+    return(timeControlStr);
+}
 
-module.exports = {getPlayers, getPlayerData, slugToID};
+function getTense(startD, endD) {
+    const startDate = Date.parse(startD);
+    const endDate = Date.parse(endD);
+    const currentDate = Date.now();
+    let status;
+    if (endDate < currentDate) {
+        status = "Past";
+    } else if (startDate > currentDate) {
+        status = "Upcoming";
+    } else {
+        status = "Current";
+    }
+    return status;
+}
+
+async function getTournaments(){
+    const db = await openDB();
+    const tournaments = await db.all(`SELECT * FROM tournaments`);
+    for await (const tournament of tournaments) {
+        const timeCon = timeControl(tournament.baseTime);
+        tournament.timeControl = timeCon;
+        const status = getTense(tournament.startDate, tournament.endDate);
+        tournament.status = status;
+        const players = await db.all(`SELECT * FROM tournamentPlayers WHERE tournamentID = ?`, tournament.tournamentID);
+        const playerCount = players.length;
+        tournament.playerCount = playerCount;
+    }
+    tournaments.sort((a, b) => Date.parse(a.endDate) - Date.parse(b.endDate));
+    tournaments.sort((a, b) => Date.parse(b.startDate) - Date.parse(a.startDate));
+    return(tournaments);
+}
+
+
+
+module.exports = {getPlayers, getPlayerData, slugToID, getTournaments};

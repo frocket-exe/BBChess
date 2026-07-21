@@ -22,7 +22,7 @@
             <div>
                 <img src="/images/profiles/<%= player.photoPath %>" alt="Player 1 profile photo" style="height: 350px; width: auto;">
             </div>
-            <div>
+            <div class="elo-list">
                 <% if(player.lichessUN !== null) {%>
                     <h4>Lichess</h4>
                     <a target="_blank" href=<%=player.links.lichess%>><%=player.lichessUN%></a>
@@ -37,16 +37,24 @@
                 <h4>BBC Elo</h4>
                 <%=player.bbcElo%>
             </div>
+            <div>
+                <h3>Achievements:</h3>
+                <% player.achievements.forEach(achievement => { %>
+                    <p>🏆<%=achievement.achievement%></p>
+                <% }); %>
+            </div>
         </div>
         <div>
-            <h2>Tournaments:</h2>
+            <h2 class="section-title">Tournaments:</h2>
             <% player.tournaments.forEach(tournament => { %>
-                <p><%=tournament.name%></p>
-                <p>Placing: <%=tournament.finalPosition%></p>
+                <div class="tournament-card">
+                    <a href="/tournaments/<%=tournament.slug%>" class="tournament-title"><%=tournament.name%></a>
+                    <p class="position position-<%=tournament.finalPosition%>">Placing: <%=tournament.finalPosition%></p>
+                </div>
             <% }); %>
         </div>
         <div>
-            <h2>Games:</h2>
+            <h2 class="section-title">Games:</h2>
             <% player.games.forEach(game => { %>
                 <div class="game-card">
                     <p class="result-<%=game.resultStr%>"><%=game.resultStr%></p>

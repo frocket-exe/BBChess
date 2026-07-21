@@ -92,3 +92,54 @@
 .notes-false{
     display: none;
 }
+
+.elo-list{
+    width: 10vw;
+    line-height: 12px;
+}
+
+.tournament-card{
+    display: flex;
+    flex-direction: row;
+    height: 90px;
+    background-color: aliceblue;
+    margin-left: 30px;
+    margin-right: 60px;
+    padding-left: 30px;
+    align-items: center;
+    gap: 40px;
+}
+
+.tournament-title{
+    font-weight: 700;
+    font-size: xx-large;
+    margin-left: 25vw;
+    text-decoration:none;
+    color: black;
+}
+
+.position{
+    border-radius: 25px;
+    font-size: x-large;
+    font-weight: 500;
+}
+
+.position-1{
+    background-color: rgb(246, 226, 45);
+}
+
+.position-2{
+    background-color: rgb(215, 216, 216);
+}
+
+.position-3{
+    background-color: rgb(244, 182, 77);
+}
+
+.section-title{
+    margin-left: 50px;
+    font-size: 40px;
+    font-weight: 700;
+    text-decoration: underline;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}

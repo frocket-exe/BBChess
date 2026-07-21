@@ -99,8 +99,9 @@ async function getPlayerData(playerID) {
     player.links = {'lichess': 'https://lichess.org/@/' + player.lichessUN, 'chessCom': 'https://chess.com/member/' + player.chessComUN};
     const tournaments = await db.all(`SELECT tournamentID, finalPosition FROM tournamentPlayers WHERE playerID = ?`, playerID);
     for await (const tournament of tournaments) {
-        tournamentName = await db.get(`SELECT name FROM tournaments WHERE tournamentID = ?`, tournament.tournamentID);
-        tournament.name = tournamentName.name;
+        tournamentData = await db.get(`SELECT name, slug FROM tournaments WHERE tournamentID = ?`, tournament.tournamentID);
+        tournament.name = tournamentData.name;
+        tournament.slug = tournamentData.slug;
     }
     player.tournaments = tournaments;
     const games = await db.all(`SELECT * FROM games WHERE whiteID = ? OR blackID = ?`, playerID, playerID);
@@ -119,8 +120,11 @@ async function getPlayerData(playerID) {
     };
     games.sort((a, b) => Date.parse(b.date) - Date.parse(a.date));
     player.games = games;
+    const achievements = await db.all(`SELECT * FROM achievements WHERE playerID = ?`, playerID);
+    player.achievements = achievements;
     return(player);
 }
+
 
 async function slugToID(playerSlug) {
     const db = await openDB();

@@ -28,7 +28,7 @@ app.get('/players/:id', asyncHandler(async (req, res) => {
   const playerObj = await dbFunctions.getPlayerData(playerID);
   if(!playerObj) {
         res.status(404);
-        throw new Error('Players not found');
+        throw new Error('Player not found');
     } else {
     res.render('player', {player: playerObj});
     }
@@ -45,14 +45,14 @@ app.get('/tournaments', asyncHandler(async (req, res) => {
 }));
 
 app.get('/tournaments/:id', asyncHandler(async (req, res) => {
-//   const playerID = await dbFunctions.slugToID(req.params.id)
-//   const playerObj = await dbFunctions.getPlayerData(playerID);
-//   if(!playerObj) {
-//         res.status(404);
-//         throw new Error('Players not found');
-//     } else {
-    res.render('tournament', {});
-    // }
+  const tournamentSlug = req.params.id
+  const tournamentObj = await dbFunctions.getTournamentData(tournamentSlug);
+  if(!tournamentObj) {
+        res.status(404);
+        throw new Error('Tournament not found');
+    } else {
+    res.render('tournament', {tournament: tournamentObj});
+    }
 }));
 
 app.listen(port, () => {

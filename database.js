@@ -209,6 +209,25 @@ async function getTournaments(){
     return(tournaments);
 }
 
+async function getTournamentData(tournamentSlug) {
+    const db = await openDB();
+    const tournament = await db.get(`SELECT * FROM tournaments WHERE slug = ?`, tournamentSlug);
+    const timeCon = timeControl(tournament.baseTime);
+    tournament.timeControl = timeCon;
+    const status = getTense(tournament.startDate, tournament.endDate);
+    tournament.status = status;
+    const games = await db.all(`SELECT * FROM games WHERE tournamentID = ?`, tournament.tournamentID);
+    for await (const game of games) {
+        const whitePlayer = await db.get(`SELECT fName FROM players WHERE playerID = ?`, game.whiteID);
+        game.whiteName = whitePlayer.fName;
+        const blackPlayer = await db.get(`SELECT fName FROM players WHERE playerID = ?`, game.blackID);
+        game.blackName = blackPlayer.fName;
+    }
+    games.sort((a, b) => Date.parse(b.date) - Date.parse(a.date));
+    tournament.games = games;
+    console.log(tournament);
+    return tournament;
+}
 
 
-module.exports = {getPlayers, getPlayerData, slugToID, getTournaments};
+module.exports = {getPlayers, getPlayerData, slugToID, getTournaments, getTournamentData};

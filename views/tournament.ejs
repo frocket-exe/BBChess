@@ -2,12 +2,43 @@
 <html lang="en">
 
     <head>
-        <title>BBChess - Tournament</title>
-        <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <title>BBChess - <%=tournament.name%></title>
+        <link rel="stylesheet" type="text/css" href="/css/style.css" />
     </head>
 
     <body>
-
+        <div class="tournament-head">
+            <div style="width: 5vw;">
+                <a href="/tournaments">Back to tournaments</a>
+                <br>
+                <a href="/">Back to home</a>
+            </div>
+            <div>
+            </div>
+            <div style="width: 28vw;">
+                <h1 class="heading"><%=tournament.name %></h1>
+            </div>
+            <div>
+                
+            </div>
+            <div>
+                
+            </div>
+        </div>
+        <div>
+            <h2 class="section-title">Games:</h2>
+            <% tournament.games.forEach(game => { %>
+                <div class="game-card">
+                    <p class="result-<%=game.resultStr%>"><%=game.resultStr%></p>
+                    <p><span style="background-color: white; border-radius: 15px;">White</span> - <a style="font-weight:inherit; color:inherit;text-decoration:none;" href="/players/<%=game.whiteName%>"><%=game.whiteName%></a></p>
+                    <p><%=game.result%></p>
+                    <p><a style="font-weight:inherit; color:inherit;text-decoration:none;" href="/players/<%=game.blackName%>"><%=game.blackName%></a> - <span style="background-color: rgb(24, 24, 24); border-radius: 15px; color: rgb(231, 231, 231);">Black</span></p>
+                    <p><%=game.date%></p>
+                    <a target="_blank" href="https://lichess.org/<%=game.link%>"><%= (game.link) ? "View game" : ""%></a>
+                    <button class="notes-<%=(game.notes !== null)%>"><%= (game.notes) ? "View notes" : ""%></button>
+                </div>
+            <% }); %>
+        </div>
     </body>
 
 

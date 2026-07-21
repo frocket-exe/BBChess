@@ -32,11 +32,10 @@ app.get('/players/:id', asyncHandler(async (req, res) => {
     } else {
     res.render('player', {player: playerObj});
     }
-  // res.render('player-test', {player: req.params.id});
 }));
 
 app.get('/tournaments', (req, res) => {
-    res.sendFile(path.join(__dirname, '/views/tournaments.html'));
+    res.render('tournaments');
 });
 
 app.listen(port, () => {

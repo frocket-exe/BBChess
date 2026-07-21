@@ -12,8 +12,8 @@ async function openDB() {
 
 async function getAge(dob) {
     const dateOfBirth = Date.parse(dob);
-    var diff_ms = Date.now() - dateOfBirth;
-    var age_dt = new Date(diff_ms); 
+    let diff_ms = Date.now() - dateOfBirth;
+    let age_dt = new Date(diff_ms); 
     return Math.abs(age_dt.getUTCFullYear() - 1970);
 }
 
@@ -48,6 +48,41 @@ async function getPlayers() {
     return players;
 }
 
+async function getExternalElo(playerID) {
+    const db = await openDB();
+    const player = await db.get(`SELECT lichessUN, chessComUN, eloLastUpdate, lichessElo, chessComLastElo, chessComBestElo FROM players WHERE playerID = ?`, playerID);
+    let lichessElo;
+    let chessComLastElo;
+    let chessComBestElo;
+    const currentUnixTime = Math.floor(Date.now()/1000);
+    const timeSinceUpdate = currentUnixTime - player.eloLastUpdate;
+    if (timeSinceUpdate >= 86400) {
+        console.log("It's been more than 24h")
+        if (player.lichessUN !== null) {
+            const lichessData = (await fetch("https://lichess.org/api/user/" + player.lichessUN));
+            const lichessDataJson = await lichessData.json();
+            lichessElo = (lichessDataJson.perfs.rapid.rating);
+        } else {
+            lichessElo = null;
+        }
+        if (player.chessComUN !== null) {
+            const chessComData = (await fetch("https://api.chess.com/pub/player/" + player.chessComUN + "/stats"));
+            const chessComDataJson = await chessComData.json();
+            chessComLastElo = chessComDataJson.chess_rapid.last.rating;
+            chessComBestElo = chessComDataJson.chess_rapid.best.rating;
+        } else {
+            chessComLastElo = null;
+            chessComBestElo = null;
+        }
+        await db.run(`UPDATE players SET eloLastUpdate = ?, lichessElo = ?, chessComLastElo = ?, chessComBestElo = ? WHERE playerID = ?;`, currentUnixTime, lichessElo, chessComLastElo, chessComBestElo, playerID);
+    } else {
+        lichessElo = player.lichessElo;
+        chessComLastElo = player.chessComLastElo;
+        chessComBestElo = player.chessComBestElo;
+    }
+    return [lichessElo, chessComLastElo, chessComBestElo];
+}
+
 async function getPlayerData(playerID) {
     const db = await openDB();
     const player = await db.get(`SELECT * FROM players WHERE playerID = ?`, playerID);
@@ -56,17 +91,11 @@ async function getPlayerData(playerID) {
     player.wins = WDL[0];
     player.draws = WDL[1];
     player.losses = WDL[2];
-    // const lichessData = (await fetch("https://lichess.org/api/user/" + player.lichessUN))
-    // const lichessDataJson = await lichessData.json();
-    // const lichessElo = (lichessDataJson.perfs.rapid.rating);
     player.rating = {};
-    // player.rating.lichessElo = lichessElo;
-    const chessComData = (await fetch("https://api.chess.com/pub/player/" + player.chessComUN + "/stats"));
-    const chessComDataJson = await chessComData.json();
-    const chessComLastElo = chessComDataJson.chess_rapid.last.rating;
-    const chessComBestElo = chessComDataJson.chess_rapid.best.rating;
-    player.rating.chessComBestElo = chessComBestElo;
-    player.rating.chessComLastElo = chessComLastElo;
+    const playerRatings =  await getExternalElo(playerID);
+    player.rating.lichessElo = playerRatings[0];
+    player.rating.chessComLastElo = playerRatings[1];
+    player.rating.chessComBestElo = playerRatings[2];
     player.links = {'lichess': 'https://lichess.org/@/' + player.lichessUN, 'chessCom': 'https://chess.com/member/' + player.chessComUN};
     const tournaments = await db.all(`SELECT tournamentID, finalPosition FROM tournamentPlayers WHERE playerID = ?`, playerID);
     for await (const tournament of tournaments) {
@@ -75,7 +104,6 @@ async function getPlayerData(playerID) {
     }
     player.tournaments = tournaments;
     const games = await db.all(`SELECT * FROM games WHERE whiteID = ? OR blackID = ?`, playerID, playerID);
-    games.sort((a, b) => parseInt(b.date) - parseInt(a.date));
     for await(const game of games) {
         if(game.result == '1/2-1/2') {
             game.resultStr = "Draw";
@@ -89,6 +117,7 @@ async function getPlayerData(playerID) {
         game.whiteName = whiteName.fName;
         game.blackName = blackName.fName;
     };
+    games.sort((a, b) => Date.parse(b.date) - Date.parse(a.date));
     player.games = games;
     return(player);
 }

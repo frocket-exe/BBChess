@@ -17,6 +17,7 @@
                 <h1 class="heading"><%=player.fName %><span class="nickname"><%= (player.nickName) ? (' "' + player.nickName + '"') : ""%></span> <%=player.sName%></h1>
                 <p><span style="color: green;"><%=player.wins%></span>/<span style="color: red;"><%=player.losses%></span>/<%=player.draws%></p>
                 <p>Age: <%=player.age%></p>
+                <p>DoB: <%=player.dob%></p>
             </div>
             <div>
                 <img src="/images/profiles/<%= player.photoPath %>" alt="Player 1 profile photo" style="height: 350px; width: auto;">
@@ -33,6 +34,8 @@
                     <p>Current Elo: <%=player.rating.chessComLastElo%></p>
                     <p>Peak Elo: <%=player.rating.chessComBestElo%></p>
                 <%}%>
+                <h4>BBC Elo</h4>
+                <%=player.bbcElo%>
             </div>
         </div>
         <div>
@@ -52,6 +55,7 @@
                     <p><a style="font-weight:inherit; color:inherit;text-decoration:none;" href="/players/<%=game.blackName%>"><%=game.blackName%></a> - <span style="background-color: rgb(24, 24, 24); border-radius: 15px; color: rgb(231, 231, 231);">Black</span></p>
                     <p><%=game.date%></p>
                     <a target="_blank" href="https://lichess.org/<%=game.link%>"><%= (game.link) ? "View game" : ""%></a>
+                    <button class="notes-<%=(game.notes !== null)%>"><%= (game.notes) ? "View notes" : ""%></button>
                 </div>
             <% }); %>
         </div>

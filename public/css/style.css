@@ -88,3 +88,7 @@
     background-color: #ff3232;
     border-radius: 15px;
 }
+
+.notes-false{
+    display: none;
+}

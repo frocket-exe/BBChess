@@ -198,6 +198,9 @@ async function getTournaments(){
         const status = getTense(tournament.startDate, tournament.endDate);
         tournament.status = status;
         const players = await db.all(`SELECT * FROM tournamentPlayers WHERE tournamentID = ?`, tournament.tournamentID);
+        const winnerID = await db.get(`SELECT playerID FROM tournamentPlayers WHERE tournamentID = ? AND finalPosition = 1`, tournament.tournamentID);
+        const winner = await db.get(`SELECT fName FROM players WHERE playerID = ?`, winnerID.playerID);
+        tournament.winner = winner.fName;
         const playerCount = players.length;
         tournament.playerCount = playerCount;
     }

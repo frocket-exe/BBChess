@@ -8,15 +8,15 @@
 
     <body>
         <div class="tournament-head">
-            <div style="width: 5vw;">
+            <div style="width: 10vw;">
                 <a href="/tournaments">Back to tournaments</a>
                 <br>
                 <a href="/">Back to home</a>
             </div>
             <div>
-                <img src="/images/tournaments/<%=tournament.photoPath%>" alt="Cover photo for the tournament">
+                <img src="/images/tournaments/<%=tournament.photoPath%>" alt="Cover photo for the tournament" style="width: 450px; height: auto;">
             </div>
-            <div style="width: 28vw;">
+            <div>
                 <h1 class="heading"><%=tournament.name %></h1>
                 <p><%= tournament.description %></p>
                 <p><%= tournament.startDate %> - <%= tournament.endDate %></p>
@@ -26,9 +26,10 @@
         <div>
             <h2 class="section-title">Rankings:</h2>
             <% tournament.players.forEach(player => { %>
-                <div>
-                    <p><%= player.finalPosition %></p>
-                    <a href="/players/<%= player.fName %>" style="font-weight:inherit; color:inherit;text-decoration:none;"><%= player.fName %><%= player.sName %></a>
+                <div class="ranking-card ranking-<%=player.finalPosition%>">
+                    <p class="ranking-card-position"><%= player.finalPosition %></p>
+                    <a href="/players/<%= player.fName %>" style="font-weight:inherit; color:inherit;text-decoration:none;" class="ranking-card-player"><%= player.fName %> <%= player.sName %></a>
+                    <p class="ranking-card-points"><%= player.score %> point<span class="points-<%=player.score%>">s</span> (<span class="wins"><%= player.wins %></span>/<span class="losses"><%= player.losses %></span>/<%= player.draws %>)</p>
                 </div>
             <% }); %>
         </div>
@@ -36,10 +37,9 @@
             <h2 class="section-title">Games:</h2>
             <% tournament.games.forEach(game => { %>
                 <div class="game-card">
-                    <p class="result-<%=game.resultStr%>"><%=game.resultStr%></p>
-                    <p><span style="background-color: white; border-radius: 15px;">White</span> - <a style="font-weight:inherit; color:inherit;text-decoration:none;" href="/players/<%=game.whiteName%>"><%=game.whiteName%></a></p>
+                    <p><span style="background-color: white; border-radius: 15px;">White</span> - <a style="font-weight:inherit; color:inherit;text-decoration:none;" href="/players/<%=game.whiteName%>" class="game-win-<%=(game.result==="1-0")%>"><%=game.whiteName%></a></p>
                     <p><%=game.result%></p>
-                    <p><a style="font-weight:inherit; color:inherit;text-decoration:none;" href="/players/<%=game.blackName%>"><%=game.blackName%></a> - <span style="background-color: rgb(24, 24, 24); border-radius: 15px; color: rgb(231, 231, 231);">Black</span></p>
+                    <p><a style="font-weight:inherit; color:inherit;text-decoration:none;" href="/players/<%=game.blackName%>" class="game-win-<%=(game.result==="0-1")%>"><%=game.blackName%></a> - <span style="background-color: rgb(24, 24, 24); border-radius: 15px; color: rgb(231, 231, 231);">Black</span></p>
                     <p><%=game.date%></p>
                     <a target="_blank" href="https://lichess.org/<%=game.link%>"><%= (game.link) ? "View game" : ""%></a>
                     <button class="notes-<%=(game.notes !== null)%>"><%= (game.notes) ? "View notes" : ""%></button>

@@ -15,12 +15,12 @@
             </div>
             <div style="width: 28vw;">
                 <h1 class="heading"><%=player.fName %><span class="nickname"><%= (player.nickName) ? (' "' + player.nickName + '"') : ""%></span> <%=player.sName%></h1>
-                <p><span style="color: green;"><%=player.wins%></span>/<span style="color: red;"><%=player.losses%></span>/<%=player.draws%></p>
+                <p><span class="wins"><%=player.wins%></span>/<span class="losses"><%=player.losses%></span>/<%=player.draws%></p>
                 <p>Age: <%=player.age%></p>
                 <p>DoB: <%=player.dob%></p>
             </div>
             <div>
-                <img src="/images/profiles/<%= player.photoPath %>" alt="Player 1 profile photo" style="height: 350px; width: auto;">
+                <img src="/images/profiles/<%= player.photoPath %>" alt="Player profile photo" style="height: 350px; width: auto;">
             </div>
             <div class="elo-list">
                 <% if(player.lichessUN !== null) {%>
@@ -56,14 +56,19 @@
         <div>
             <h2 class="section-title">Games:</h2>
             <% player.games.forEach(game => { %>
-                <div class="game-card">
-                    <p class="result-<%=game.resultStr%>"><%=game.resultStr%></p>
-                    <p><span style="background-color: white; border-radius: 15px;">White</span> - <a style="font-weight:inherit; color:inherit;text-decoration:none;" href="/players/<%=game.whiteName%>"><%=game.whiteName%></a></p>
-                    <p><%=game.result%></p>
-                    <p><a style="font-weight:inherit; color:inherit;text-decoration:none;" href="/players/<%=game.blackName%>"><%=game.blackName%></a> - <span style="background-color: rgb(24, 24, 24); border-radius: 15px; color: rgb(231, 231, 231);">Black</span></p>
-                    <p><%=game.date%></p>
-                    <a target="_blank" href="https://lichess.org/<%=game.link%>"><%= (game.link) ? "View game" : ""%></a>
-                    <button class="notes-<%=(game.notes !== null)%>"><%= (game.notes) ? "View notes" : ""%></button>
+                <div>
+                    <div class="game-card">
+                        <p class="result-<%=game.resultStr%>"><%=game.resultStr%></p>
+                        <p><span style="background-color: white; border-radius: 15px;">White</span> - <a style="font-weight:inherit; color:inherit;text-decoration:none;" href="/players/<%=game.whiteName%>"><%=game.whiteName%></a></p>
+                        <p><%=game.result%></p>
+                        <p><a style="font-weight:inherit; color:inherit;text-decoration:none;" href="/players/<%=game.blackName%>"><%=game.blackName%></a> - <span style="background-color: rgb(24, 24, 24); border-radius: 15px; color: rgb(231, 231, 231);">Black</span></p>
+                        <p><%=game.date%></p>
+                        <a target="_blank" href="https://lichess.org/<%=game.link%>"><%= (game.link) ? "View game" : ""%></a>
+                        <button class="notes-<%=(game.notes !== null)%>"><%= (game.notes) ? "View notes" : ""%></button>
+                    </div>
+                    <div class="notes-section note-active-">
+                        <p><%= game.notes %></p>
+                    </div>
                 </div>
             <% }); %>
         </div>

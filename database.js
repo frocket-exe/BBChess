@@ -221,16 +221,33 @@ async function getTournamentData(tournamentSlug) {
         const playerInfo = await db.get(`SELECT fName, sName FROM players WHERE playerID = ?`, player.playerID);
         player.fName = playerInfo.fName;
         player.sName = playerInfo.sName;
+        player.wins = 0;
+        player.losses = 0;
+        player.draws = 0;
     }
     players.sort((a, b) => parseInt(a.finalPosition) - parseInt(b.finalPosition));
     tournament.players = players;
     const games = await db.all(`SELECT * FROM games WHERE tournamentID = ?`, tournament.tournamentID);
-    for await (const game of games) {
-        const whitePlayer = await db.get(`SELECT fName FROM players WHERE playerID = ?`, game.whiteID);
+    games.forEach(game => {
+        const whitePlayer = tournament.players.find(player => {return player.playerID === game.whiteID})
+        const blackPlayer = tournament.players.find(player => {return player.playerID === game.blackID})
         game.whiteName = whitePlayer.fName;
-        const blackPlayer = await db.get(`SELECT fName FROM players WHERE playerID = ?`, game.blackID);
         game.blackName = blackPlayer.fName;
-    }
+        if (game.result == "1-0") {
+            whitePlayer.wins ++;
+            blackPlayer.losses ++;
+        } else if (game.result == "0-1") {
+            whitePlayer.losses ++;
+            blackPlayer.wins ++;
+        } else {
+            whitePlayer.draws ++;
+            blackPlayer.draws ++;
+        }
+    })
+    players.forEach(player => {
+        const score = player.wins + (player.draws/2);
+        player.score = score;
+    })
     games.sort((a, b) => Date.parse(b.date) - Date.parse(a.date));
     tournament.games = games;
     console.log(tournament);

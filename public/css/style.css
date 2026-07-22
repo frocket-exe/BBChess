@@ -12,7 +12,7 @@
     margin-left: 1vw;
     margin-right: 2vw;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-items: space-between;
 }
 
 .player{
@@ -152,6 +152,7 @@
     margin-left: 30px;
     margin-right: 60px;
     padding-left: 60px;
+    padding-top: 20px;
     align-content: center;
     gap: 50px;
 }
@@ -168,4 +169,75 @@
 
 .tournaments-exist-false{
     display: none;
+}
+
+.game-win-true{
+    background-color: rgb(63, 241, 63);
+    border-radius: 15px;
+}
+
+.game-win-false{
+    background-color: #ff3232;
+    border-radius: 15px;
+}
+
+.points-1{
+    display: none;
+}
+
+.ranking-card{
+    display: flex;
+    flex-direction: row;
+    height: 80px;
+    margin-left: 30px;
+    margin-right: 60px;
+    margin-bottom: 3px;
+    padding-left: 20px;
+    background-color: aliceblue;
+    align-items: center;
+    gap: 20px;
+}
+
+.ranking-1{
+    background-color: rgb(246, 226, 45);;
+}
+
+.ranking-2{
+    background-color: rgb(215, 216, 216);;
+}
+
+.ranking-3{
+    background-color: rgb(244, 182, 77);;
+}
+
+.ranking-card-position{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 28px;
+    font-weight: 500;
+}
+
+.ranking-card-player{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 30px;
+    font-weight: 800;
+}
+
+.ranking-card-points{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 20px;
+}
+
+.tournament-head{
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+    background-color: beige;
+}
+
+.wins{
+    color: green;
+}
+
+.losses{
+    color: red;
 }

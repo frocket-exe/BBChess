@@ -241,3 +241,11 @@
 .losses{
     color: red;
 }
+
+.notes-section{
+
+}
+
+.note-active-false{
+    display: none;
+}

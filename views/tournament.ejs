@@ -36,16 +36,23 @@
         <div>
             <h2 class="section-title">Games:</h2>
             <% tournament.games.forEach(game => { %>
-                <div class="game-card">
-                    <p><span style="background-color: white; border-radius: 15px;">White</span> - <a style="font-weight:inherit; color:inherit;text-decoration:none;" href="/players/<%=game.whiteName%>" class="game-win-<%=(game.result==="1-0")%>"><%=game.whiteName%></a></p>
-                    <p><%=game.result%></p>
-                    <p><a style="font-weight:inherit; color:inherit;text-decoration:none;" href="/players/<%=game.blackName%>" class="game-win-<%=(game.result==="0-1")%>"><%=game.blackName%></a> - <span style="background-color: rgb(24, 24, 24); border-radius: 15px; color: rgb(231, 231, 231);">Black</span></p>
-                    <p><%=game.date%></p>
-                    <a target="_blank" href="https://lichess.org/<%=game.link%>"><%= (game.link) ? "View game" : ""%></a>
-                    <button class="notes-<%=(game.notes !== null)%>"><%= (game.notes) ? "View notes" : ""%></button>
+                <div class="game-container">
+                    <div class="game-card">
+                        <p><span style="background-color: white; border-radius: 15px;">White</span> - <a style="font-weight:inherit; color:inherit;text-decoration:none;" href="/players/<%=game.whiteName%>" class="game-win-<%=(game.result==="1-0")%>"><%=game.whiteName%></a></p>
+                        <p><%=game.result%></p>
+                        <p><a style="font-weight:inherit; color:inherit;text-decoration:none;" href="/players/<%=game.blackName%>" class="game-win-<%=(game.result==="0-1")%>"><%=game.blackName%></a> - <span style="background-color: rgb(24, 24, 24); border-radius: 15px; color: rgb(231, 231, 231);">Black</span></p>
+                        <p><%= (game.locationID == 1) ? "Online" : "OTB" %></p>
+                        <p><%=game.date%></p>
+                        <a target="_blank" href="https://lichess.org/<%=game.link%>"><%= (game.link) ? "View game" : ""%></a>
+                        <button class="notes-<%=(game.notes !== null)%> notes-button"><%= (game.notes) ? "View notes" : ""%></button>
+                    </div>
+                    <div class="notes-section note-active-false">
+                        <p><%= game.notes %></p>
+                    </div>
                 </div>
             <% }); %>
         </div>
+    <script src="/js/main.js"></script>
     </body>
 
 

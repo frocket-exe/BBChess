@@ -10,7 +10,7 @@ app.use(express.static('public'));
 app.set("view engine","ejs");
 
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '/views/index.html'));
+    res.render('home');
 });
 
 app.get('/players', asyncHandler(async (req, res) => {

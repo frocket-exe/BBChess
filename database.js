@@ -48,6 +48,53 @@ async function getPlayers() {
     return players;
 }
 
+function calcElo(game, whitePlayer, blackPlayer) {
+    const kWhite = Math.max(20, 69-whitePlayer.gamesPlayed);
+    const kBlack = Math.max(20, 69-blackPlayer.gamesPlayed);
+    const whiteID = game.whiteID;
+    const blackID = game.blackID;
+    const whiteInitialRating = whitePlayer.bbcElo;
+    const blackInitialRating = blackPlayer.bbcElo;
+    const whiteExpectation = 1/(1+10**((blackInitialRating-whiteInitialRating)/400));
+    const blackExpectation = 1/(1+10**((whiteInitialRating-blackInitialRating)/400));
+    let whiteResult;
+    let blackResult;
+    if (game.result == "1-0") {
+        whiteResult = 1;
+        blackResult = 0;
+    } else if (game.result == "0-1") {
+        whiteResult = 0;
+        blackResult = 1;
+    } else {
+        whiteResult = 0.5;
+        blackResult = 0.5;
+    }
+    const newWhiteElo = (whiteInitialRating + kWhite * (whiteResult-whiteExpectation));
+    const newBlackElo = (blackInitialRating + kBlack * (blackResult-blackExpectation));
+    return [newWhiteElo, newBlackElo];
+}
+
+async function calcAllGamesElo() {
+    const db = await openDB();
+    const players = await db.all(`SELECT playerID, fName, bbcElo FROM players`);
+    const games = await db.all(`SELECT gameID, whiteID, blackID, result, date FROM games WHERE rated = 1`);
+    for await (const player of players) {
+        const playerGames = await db.all(`SELECT gameID FROM games WHERE whiteID = ? OR blackID = ?`, player.playerID, player.playerID);
+        player.gamesPlayed = playerGames.length;
+    }
+    games.sort((a, b) => Date.parse(a.date) - Date.parse(b.date));
+    for await (const game of games) {
+        const whitePlayer = players.filter(obj => {return obj.playerID === game.whiteID})[0]
+        const blackPlayer = players.filter(obj => {return obj.playerID === game.blackID})[0]
+        const eloResults = calcElo(game, whitePlayer, blackPlayer);
+        whitePlayer.bbcElo = eloResults[0];
+        blackPlayer.bbcElo = eloResults[1];
+    }
+    for await (const player of players) {
+        await db.run(`UPDATE players SET bbcElo = ? WHERE playerID = ?;`, player.bbcElo, player.playerID);
+    }
+}
+
 async function getExternalElo(playerID) {
     const db = await openDB();
     const player = await db.get(`SELECT lichessUN, chessComUN, eloLastUpdate, lichessElo, chessComLastElo, chessComBestElo FROM players WHERE playerID = ?`, playerID);

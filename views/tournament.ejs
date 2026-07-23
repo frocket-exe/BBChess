@@ -38,12 +38,12 @@
             <% tournament.games.forEach(game => { %>
                 <div class="game-container">
                     <div class="game-card">
-                        <p><span style="background-color: white; border-radius: 15px;">White</span> - <a style="font-weight:inherit; color:inherit;text-decoration:none;" href="/players/<%=game.whiteName%>" class="game-win-<%=(game.result==="1-0")%>"><%=game.whiteName%></a></p>
-                        <p><%=game.result%></p>
-                        <p><a style="font-weight:inherit; color:inherit;text-decoration:none;" href="/players/<%=game.blackName%>" class="game-win-<%=(game.result==="0-1")%>"><%=game.blackName%></a> - <span style="background-color: rgb(24, 24, 24); border-radius: 15px; color: rgb(231, 231, 231);">Black</span></p>
-                        <p><%= (game.locationID == 1) ? "Online" : "OTB" %></p>
-                        <p><%=game.dateStr%></p>
-                        <a target="_blank" href="https://lichess.org/<%=game.link%>"><%= (game.link) ? "View game" : ""%></a>
+                        <p class="game-card-white-player"><span style="background-color: white; border-radius: 15px;">White</span> - <a style="font-weight:inherit; color:inherit;text-decoration:none;" href="/players/<%=game.whiteName%>" class="game-win-<%=(game.result==="1-0")%>"><%=game.whiteName%></a></p>
+                        <p class="game-card-result"><%=game.result%></p>
+                        <p class="game-card-black-player"><a style="font-weight:inherit; color:inherit;text-decoration:none;" href="/players/<%=game.blackName%>" class="game-win-<%=(game.result==="0-1")%>"><%=game.blackName%></a> - <span style="background-color: rgb(24, 24, 24); border-radius: 15px; color: rgb(231, 231, 231);">Black</span></p>
+                        <p class="game-card-type"><%= (game.locationID == 1) ? "Online" : "OTB" %></p>
+                        <p class="game-card-date"><%=game.dateStr%></p>
+                        <a class="view-game-<%= (game.link !== null)%>" target="_blank" href="https://lichess.org/<%=game.link%>"><img class="game-card-view-game" src="/images/icons/chessLinkIcon.png" alt="View Game"></a>
                         <button class="notes-<%=(game.notes !== null)%> notes-button"><%= (game.notes) ? "📝" : ""%></button>
                     </div>
                     <div class="notes-section note-active-false">

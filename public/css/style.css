@@ -137,7 +137,7 @@ body.home {
     display: flex;
     flex-direction: row;
     justify-content: baseline;
-    gap: 50px;
+    gap: 2vw;
     height: 100px;
     font-size: 50px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -145,7 +145,7 @@ body.home {
 }
 
 .result{
-    font-size: 50px;
+    font-size: 2.5vw;
     font-weight: 600;
     color: rgb(20, 20, 20);
 }
@@ -160,17 +160,31 @@ body.home {
     border-radius: 15px;
 }
 
-.game-card-white-player{}
+.game-card-white-player{
+    font-size: 2.5vw;
+}
 
-.game-card-result{}
+.game-card-result{
+    font-size: 3vw;
+    font-weight: 700;
+}
 
-.game-card-black-player{}
+.game-card-black-player{
+    font-size: 2.5vw;
+}
 
-.game-card-type{}
+.game-card-type{
+    font-size: 1.5vw;
+}
 
-.game-card-date{}
+.game-card-date{
+    font-size: 1.5vw;
+}
 
-.game-card-view-game{}
+.game-card-view-game{
+    width: 2.5vw;
+    height: auto;
+}
 
 .notes-button{
     width: 3.5vw;
@@ -183,6 +197,10 @@ body.home {
 
 .notes-section{
     font-size: 30px;
+}
+
+.view-game-false{
+    display: none;
 }
 
 .notes-false{
@@ -324,7 +342,7 @@ body.home {
 
 .ranking-card-points{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 20px;
+    font-size: 1.1vw;
 }
 
 .tournament-head{

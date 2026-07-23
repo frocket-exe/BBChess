@@ -5,11 +5,6 @@ function getNotes(e) {
     const container = button.closest(".game-container");
     const notes = container.querySelector(".notes-section");
     notes.classList.toggle("note-active-false");
-    if (button.innerHTML == "View notes") {
-        button.innerHTML = "Hide notes";
-    } else {
-        button.innerHTML = "View notes";
-    }
 }
 
 // for (var i = 0; i < notesButtons.length; i++) {

@@ -1,5 +1,6 @@
 const sqlite3 = require('sqlite3');
 const { open } = require('sqlite');
+const strftime = require('strftime');
 
 async function openDB() {
     const db = await open({
@@ -33,6 +34,12 @@ async function getStats(playerID) {
         }
     });
     return([wins, losses, draws]);
+}
+
+function dateStr(date) {
+    const d = Date.parse(date);
+    const dStr = strftime('%d/%m/%Y', new Date(d));
+    return(dStr);
 }
 
 async function getPlayers() {
@@ -133,6 +140,7 @@ async function getExternalElo(playerID) {
 async function getPlayerData(playerID) {
     const db = await openDB();
     const player = await db.get(`SELECT * FROM players WHERE playerID = ?`, playerID);
+    player.dobStr = dateStr(player.dob);
     player.age = await getAge(player.dob);
     let WDL = await getStats(player.playerID);
     player.wins = WDL[0];
@@ -153,6 +161,7 @@ async function getPlayerData(playerID) {
     player.tournaments = tournaments;
     const games = await db.all(`SELECT * FROM games WHERE whiteID = ? OR blackID = ?`, playerID, playerID);
     for await(const game of games) {
+        game.dateStr = dateStr(game.date);
         if(game.result == '1/2-1/2') {
             game.resultStr = "Draw";
         } else if ((game.result == '1-0' && game.whiteID == playerID) || (game.result == '0-1' && game.blackID == playerID)) {
@@ -240,6 +249,12 @@ async function getTournaments(){
     const db = await openDB();
     const tournaments = await db.all(`SELECT * FROM tournaments`);
     for await (const tournament of tournaments) {
+        const startDateStr = dateStr(tournament.startDate);
+        const endDateStr = dateStr(tournament.endDate);
+        tournament.startDateStr = startDateStr;
+        tournament.endDateStr = endDateStr;
+        console.log(startDateStr);
+        console.log(endDateStr);
         const timeCon = timeControl(tournament.baseTime);
         tournament.timeControl = timeCon;
         const status = getTense(tournament.startDate, tournament.endDate);
@@ -260,6 +275,8 @@ async function getTournamentData(tournamentSlug) {
     const db = await openDB();
     const tournament = await db.get(`SELECT * FROM tournaments WHERE slug = ?`, tournamentSlug);
     const timeCon = timeControl(tournament.baseTime);
+    tournament.startDateStr = dateStr(tournament.startDate);
+    tournament.endDateStr = dateStr(tournament.endDate);
     tournament.timeControl = timeCon;
     const status = getTense(tournament.startDate, tournament.endDate);
     tournament.status = status;
@@ -276,6 +293,7 @@ async function getTournamentData(tournamentSlug) {
     tournament.players = players;
     const games = await db.all(`SELECT * FROM games WHERE tournamentID = ?`, tournament.tournamentID);
     games.forEach(game => {
+        game.dateStr = dateStr(game.date);
         const whitePlayer = tournament.players.find(player => {return player.playerID === game.whiteID})
         const blackPlayer = tournament.players.find(player => {return player.playerID === game.blackID})
         game.whiteName = whitePlayer.fName;
@@ -297,7 +315,6 @@ async function getTournamentData(tournamentSlug) {
     })
     games.sort((a, b) => Date.parse(b.date) - Date.parse(a.date));
     tournament.games = games;
-    console.log(tournament);
     return tournament;
 }
 

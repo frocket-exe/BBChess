@@ -81,6 +81,23 @@ body.home {
     gap: 50px;
 }
 
+.profile-head-left{
+    width: 28vw;
+}
+
+.profile-head-left h1{
+    margin-top: 8px;
+    padding-left: 0;
+}
+
+.profile-head-left p{
+    font-size: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 500;
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
 .game-container{
     display: flex;
     flex-direction: column;

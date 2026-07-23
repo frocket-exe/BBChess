@@ -18,6 +18,7 @@
                         <img src="/images/profiles/<%= player.photoPath %>" alt="Player 1 profile photo">
                         <div>
                             <h3><%=player.fName %><span class="nickname"><%= (player.nickName) ? (' "' + player.nickName + '"') : ""%></span> <%=player.sName%></h3>
+                            <p>BBC Elo: <%=parseInt(player.bbcElo)%></p>
                             <p><span class="wins"><%=player.wins%></span>/<span class="losses"><%=player.losses%></span>/<%=player.draws%></p>
                         </div>
                     </div>

@@ -44,7 +44,7 @@ async function getPlayers() {
         player.draws = WDL[1];
         player.losses = WDL[2];
     }
-    players.sort((a, b) => parseInt(b.wins) - parseInt(a.wins));
+    players.sort((a, b) => parseFloat(b.bbcElo) - parseFloat(a.bbcElo));
     return players;
 }
 

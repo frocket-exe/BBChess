@@ -160,6 +160,31 @@ body.home {
     border-radius: 15px;
 }
 
+.game-card-white-player{}
+
+.game-card-result{}
+
+.game-card-black-player{}
+
+.game-card-type{}
+
+.game-card-date{}
+
+.game-card-view-game{}
+
+.notes-button{
+    width: 3.5vw;
+    height: 3.5vw;
+    font-size: 2.5vw;
+    margin-right: 20px;
+    background-color: rgba(0, 0, 0, 0);
+    border-width: 0px;
+}
+
+.notes-section{
+    font-size: 30px;
+}
+
 .notes-false{
     display: none;
 }
@@ -315,10 +340,6 @@ body.home {
 
 .losses{
     color: red;
-}
-
-.notes-section{
-
 }
 
 .note-active-false{

@@ -44,7 +44,7 @@
                         <p><%= (game.locationID == 1) ? "Online" : "OTB" %></p>
                         <p><%=game.dateStr%></p>
                         <a target="_blank" href="https://lichess.org/<%=game.link%>"><%= (game.link) ? "View game" : ""%></a>
-                        <button class="notes-<%=(game.notes !== null)%> notes-button"><%= (game.notes) ? "View notes" : ""%></button>
+                        <button class="notes-<%=(game.notes !== null)%> notes-button"><%= (game.notes) ? "📝" : ""%></button>
                     </div>
                     <div class="notes-section note-active-false">
                         <p><%= game.notes %></p>

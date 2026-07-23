@@ -253,8 +253,6 @@ async function getTournaments(){
         const endDateStr = dateStr(tournament.endDate);
         tournament.startDateStr = startDateStr;
         tournament.endDateStr = endDateStr;
-        console.log(startDateStr);
-        console.log(endDateStr);
         const timeCon = timeControl(tournament.baseTime);
         tournament.timeControl = timeCon;
         const status = getTense(tournament.startDate, tournament.endDate);

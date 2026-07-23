@@ -1,8 +1,17 @@
+body.home {
+  background-image: url('/images/backgrounds/homeBG.png');
+  background-repeat: repeat-x;
+}
+
 .heading{
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 40px;
+    font-size: 60px;
     font-weight: 900;
-    color: rgb(35, 35, 35);
+    color: rgb(25, 25, 25);
+    padding-left: 30px;
+    margin: 0px;
+    margin-top: 30px;
+    margin-bottom: 10px;
 }
 
 .players-container{
@@ -20,18 +29,20 @@
     flex-direction: row;
     gap: 10px;
     background-color: rgb(247, 247, 250);
-    height: 175px;
+    height: 20vh;
     box-shadow: 1px 1px 3px rgb(0, 0, 0, 0.15);
     width: 45vw;
     padding: 5px;
     padding-left: 15px;
+    border-radius: 10px;
 }
 
 .player img{
-    height: 150px;
-    width: 150px;
+    height: 18.5vh;
+    width: auto;
     align-self: center;
     margin-right: 10px;
+    border-radius: 8px;
 }
 
 .player-info{
@@ -41,17 +52,22 @@
 }
 
 .player h3{
-    font-size: x-large;
+    font-size: 50px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0px;
 }
 
 .player p{
-    font-size: large;
-    margin-left: 5px;
+    font-size: 35px;
+    margin-top: 3vh;
+    margin-left: 10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 650;
 }
 
 .nickname{
     font-style: italic;
-    font-size: 24px;
+    font-size: 0.9em;
 }
 
 /* PLAYER CSS */
@@ -64,19 +80,24 @@
     gap: 50px;
 }
 
-.game-card{
+.game-container{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     background-color: beige;
     margin-left: 30px;
     margin-right: 60px;
     margin-bottom: 10px;
+    padding-left: 40px;
+}
+
+.game-card{
+    display: flex;
+    flex-direction: row;
     justify-content: baseline;
     gap: 50px;
     height: 100px;
     font-size: 50px;
     align-items: center;
-    padding-left: 40px;
 }
 
 .result-Win{
@@ -152,8 +173,7 @@
     margin-left: 30px;
     margin-right: 60px;
     padding-left: 60px;
-    padding-top: 20px;
-    align-content: center;
+    align-items: center;
     gap: 50px;
 }
 
@@ -248,4 +268,56 @@
 
 .note-active-false{
     display: none;
+}
+
+.homepage-button{
+    width: 50vw;
+    height: 20vh;
+}
+
+.home-box{
+    height: 88vh;
+    width: 95vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.home-box h1{
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 19vh;
+    font-weight: 900;
+    color: rgb(25, 25, 25);
+    margin: 0px;
+    text-shadow: -2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff, 2px 2px 0 #fff, 8px 8px 8cap rgb(0, 0, 0, 0.2);
+}
+
+.home-box p{
+    font-size: 3vh;
+    background-color: antiquewhite;
+    padding: 5px;
+    margin-top: 0px;
+    margin-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 12px;
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 8px;
+    box-shadow: 4px 4px 4px rgb(0, 0, 0, 0.15);
+}
+
+.home-box button{
+    width: 40vw;
+    height: 17vh;
+    font-size: 8.5vh;
+    font-weight: 600;
+    border-radius: 35px;
+    backdrop-filter: blur(2px);
+    background-color: rgba(25, 25, 25, .8);
+    color:#fff;
+    box-shadow: 10px 10px 8px rgb(0, 0, 0, 0.2);
+    text-shadow: 8px 8px 8px rgb(0, 0, 0, 0.2);
 }

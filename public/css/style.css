@@ -8,7 +8,6 @@ body.home {
     font-size: 60px;
     font-weight: 900;
     color: rgb(25, 25, 25);
-    padding-left: 30px;
     margin: 0px;
     margin-top: 30px;
     margin-bottom: 10px;
@@ -196,7 +195,7 @@ body.home {
 }
 
 .notes-section{
-    font-size: 30px;
+    font-size: 1.5vw;
 }
 
 .view-game-false{
@@ -211,6 +210,10 @@ body.home {
     width: 10vw;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     padding-top: 10px;
+}
+
+.tournaments-section-header{
+    padding-left: 30px;
 }
 
 .tournament-card{
@@ -263,6 +266,13 @@ body.home {
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+.tournament-section h2{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding-left: 45px;
+    font-size: 2.2vw;
+    margin-bottom: 10px;
+}
+
 .tournament-card2{
     display: flex;
     flex-direction: row;
@@ -280,13 +290,43 @@ body.home {
     margin: 0;
 }
 
+.tournament-details{
+    width: 10vw;
+    font-size: 1.1vw;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 15px;
+    font-weight: 500;
+}
+
 .tournament-card-main{
+    display: flex;
+    flex-direction: column;
     width: 60vw;
-    justify-content:center;
+    justify-content: center;
+    align-items: center;
+}
+
+.tournament-card-main h3{
+    font-size: 3.4vw;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.tournament-card-main p{
+    font-size: 1.3vw;
 }
 
 .tournaments-exist-false{
     display: none;
+}
+
+.tournament-winner{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 1.1vw;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 10px;
+    font-weight: 600;
 }
 
 .game-win-true{

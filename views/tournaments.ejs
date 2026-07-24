@@ -8,35 +8,36 @@
 
     <body>
 
-        <h1 class="heading">Tournaments</h1>
+        <h1 class="heading tournaments-section-header">Tournaments</h1>
         <a href="/">Back to home</a>
         <br>
         <% const currentTournaments = tournaments.filter(tournament => tournament.status === "Current"); %>
         <% const futureTournaments = tournaments.filter(tournament => tournament.status === "Upcoming"); %>
         <% const pastTournaments = tournaments.filter(tournament => tournament.status === "Past"); %>
-        <div class="tournaments-exist-<%=(currentTournaments.length > 0)%>">
+        <div class="tournament-section tournaments-exist-<%=(currentTournaments.length > 0)%>">
             <h2>Current tournament:</h2>
             <% currentTournaments.forEach(tournament => { %>
                     <div class="tournament-card2">
-                        <div style="width: 10vw;">
+                        <div class="tournament-details">
                             <p>⌛<%= tournament.timeControl%> (<%= tournament.baseTime%> + <%= tournament.bonusTime%>)</p>
                             <p><%= tournament.playerCount %> players</p>
                         </div>
                         <div class="tournament-card-main">
-                            <a href="/tournaments/<%=tournament.slug%>" style="font-weight:inherit; color:inherit;text-decoration:none;"><h3><%= tournament.name %></h3></a>
+                            <a href="/tournaments/<%=tournament.slug%>" style="font-weight:inherit; color:inherit;text-decoration:none;"><h3 class="tournament-title"><%= tournament.name %></h3></a>
                             <p><%= tournament.startDateStr%> - <%= tournament.endDateStr%></p>
                         </div>
-                        <div>
-                            <p>Winner: <a style="font-weight:inherit; color:inherit;text-decoration:none;" href="/players/<%= tournament.winner %>"><%= tournament.winner %></a></p>
+                        <div class="tournament-winner">
+                            <p>Winner:</p>
+                            <a style="font-weight:inherit; color:inherit;text-decoration:none;" href="/players/<%= tournament.winner %>"><%= tournament.winner %></a>
                         </div>
                     </div>
             <% }); %>
         </div>
-        <div class="tournaments-exist-<%=(futureTournaments.length > 0)%>">
+        <div class="tournament-section tournaments-exist-<%=(futureTournaments.length > 0)%>">
             <h2>Upcoming tournaments:</h2>
             <% futureTournaments.forEach(tournament => { %>
                     <div class="tournament-card2">
-                        <div style="width: 10vw;">
+                        <div class="tournament-details">
                             <p>⌛<%= tournament.timeControl%> (<%= tournament.baseTime%> + <%= tournament.bonusTime%>)</p>
                             <p><%= tournament.playerCount %> players</p>
                         </div>
@@ -44,17 +45,18 @@
                             <a href="/tournaments/<%=tournament.slug%>" style="font-weight:inherit; color:inherit;text-decoration:none;"><h3><%= tournament.name %></h3></a>
                             <p><%= tournament.startDateStr%> - <%= tournament.endDateStr%></p>
                         </div>
-                        <div>
-                            <p>Winner: <a style="font-weight:inherit; color:inherit;text-decoration:none;" href="/players/<%= tournament.winner %>"><%= tournament.winner %></a></p>
+                        <div class="tournament-winner">
+                            <p>Winner:</p>
+                            <a style="font-weight:inherit; color:inherit;text-decoration:none;" href="/players/<%= tournament.winner %>"><%= tournament.winner %></a>
                         </div>
                     </div>
             <% }); %>
         </div>
-        <div class="tournaments-exist-<%=(pastTournaments.length > 0)%>">
+        <div class="tournament-section tournaments-exist-<%=(pastTournaments.length > 0)%>">
             <h2>Past tournaments:</h2>
             <% pastTournaments.forEach(tournament => { %>
                     <div class="tournament-card2">
-                        <div style="width: 10vw;">
+                        <div class="tournament-details">
                             <p>⌛<%= tournament.timeControl%> (<%= tournament.baseTime%> + <%= tournament.bonusTime%>)</p>
                             <p><%= tournament.playerCount %> players</p>
                         </div>
@@ -62,8 +64,9 @@
                             <a href="/tournaments/<%=tournament.slug%>" style="font-weight:inherit; color:inherit;text-decoration:none;"><h3><%= tournament.name %></h3></a>
                             <p><%= tournament.startDateStr%> - <%= tournament.endDateStr%></p>
                         </div>
-                        <div>
-                            <p>Winner: <a style="font-weight:inherit; color:inherit;text-decoration:none;" href="/players/<%= tournament.winner %>"><%= tournament.winner %></a></p>
+                        <div class="tournament-winner">
+                            <p>Winner:</p>
+                            <a style="font-weight:inherit; color:inherit;text-decoration:none;" href="/players/<%= tournament.winner %>"><%= tournament.winner %></a>
                         </div>
                     </div>
             <% }); %>

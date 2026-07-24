@@ -6,10 +6,12 @@
         <link rel="stylesheet" type="text/css" href="/css/style.css" />
     </head>
 
-    <body>
+    <body class="players">
 
-        <h1 class="heading">Players</h1>
-        <a href="/">Back to home</a>
+        <div class="players-nav">
+            <a href="/"><img src="/images/icons/homeIcon.png" alt="Back to home button" class="home-icon"></a>
+            <h1 class="heading">Players</h1>
+        </div>
         <br>
         <div class="players-container">
             <% playerData.forEach(player => { %>

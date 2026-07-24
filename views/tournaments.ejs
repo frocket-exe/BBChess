@@ -6,10 +6,12 @@
         <link rel="stylesheet" type="text/css" href="/css/style.css" />
     </head>
 
-    <body>
+    <body class="tournaments">
 
-        <h1 class="heading tournaments-section-header">Tournaments</h1>
-        <a href="/">Back to home</a>
+        <div class="tournaments-header">
+            <a href="/"><img src="/images/icons/homeIcon.png" alt="Back to home button" class="home-icon"></a>
+            <h1 class="heading tournaments-section-header">Tournaments</h1>
+        </div>
         <br>
         <% const currentTournaments = tournaments.filter(tournament => tournament.status === "Current"); %>
         <% const futureTournaments = tournaments.filter(tournament => tournament.status === "Upcoming"); %>

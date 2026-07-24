@@ -6,12 +6,11 @@
         <link rel="stylesheet" type="text/css" href="/css/style.css" />
     </head>
 
-    <body>
+    <body class="player-body">
         <div class="profile-head">
-            <div style="width: 5vw;">
-                <a href="/players">Back to players</a>
-                <br>
-                <a href="/">Back to home</a>
+            <div class="player-nav">
+                <a href="/"><img src="/images/icons/homeIcon.png" alt="Back to home icon"></a>
+                <a href="/players"><img src="/images/icons/playersIcon.png" alt="Back to tournaments icon"></a>
             </div>
             <div class="profile-head-left">
                 <h1 class="heading"><%=player.fName %><span class="nickname"><%= (player.nickName) ? (' "' + player.nickName + '"') : ""%></span> <%=player.sName%></h1>

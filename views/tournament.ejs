@@ -6,18 +6,17 @@
         <link rel="stylesheet" type="text/css" href="/css/style.css" />
     </head>
 
-    <body>
+    <body class="tournament">
         <div class="tournament-head">
-            <div style="width: 10vw;">
-                <a href="/tournaments">Back to tournaments</a>
-                <br>
-                <a href="/">Back to home</a>
+            <div class="tournament-nav">
+                <a href="/"><img src="/images/icons/homeIcon.png" alt="Back to home icon"></a>
+                <a href="/tournaments"><img src="/images/icons/tournamentIcon.png" alt="Back to tournaments icon"></a>
             </div>
             <div>
                 <img src="/images/tournaments/<%=tournament.photoPath%>" alt="Cover photo for the tournament" style="width: 450px; height: auto;">
             </div>
-            <div>
-                <h1 class="heading"><%=tournament.name %></h1>
+            <div class="tournament-descriptions">
+                <h1 class="heading tournament-heading"><%=tournament.name %></h1>
                 <p><%= tournament.description %></p>
                 <p><%= tournament.startDateStr %> - <%= tournament.endDateStr %></p>
                 <p>⌛ <%= tournament.timeControl %> (<%= tournament.baseTime %> + <%= tournament.bonusTime %>)</p>

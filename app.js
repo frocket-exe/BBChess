@@ -1,8 +1,8 @@
 const express = require('express');
 const app = express();
 const path = require('path');
-const port = 3000;
 const asyncHandler = require('express-async-handler');
+const port = process.env.PORT || 3000;
 
 const dbFunctions = require('./database');
 
@@ -56,5 +56,5 @@ app.get('/tournaments/:id', asyncHandler(async (req, res) => {
 }));
 
 app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`);
+    console.log(`Listening on port ${port}`);
 });

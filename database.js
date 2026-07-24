@@ -4,7 +4,7 @@ const strftime = require('strftime');
 
 async function openDB() {
     const db = await open({
-        filename: './database.db',
+        filename: './data/database.db',
         driver: sqlite3.Database
     })
 

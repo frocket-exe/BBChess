@@ -5,6 +5,7 @@ function getNotes(e) {
     const container = button.closest(".game-container");
     const notes = container.querySelector(".notes-section");
     notes.classList.toggle("note-active-false");
+    notes.scrollIntoView({behavior: "smooth"});
 }
 
 // for (var i = 0; i < notesButtons.length; i++) {

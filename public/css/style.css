@@ -1,7 +1,8 @@
 body.home {
-  background-image: url('/images/backgrounds/homeBG.png');
-  background-size: auto 125%;
+  background-image:linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2)), url('/images/backgrounds/homeBGPlain.png');
+  /* background-size: auto 125%; */
   background-position: center;
+  height: 100vh;
 }
 
 body.tournaments{

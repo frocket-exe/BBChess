@@ -49,7 +49,7 @@
                         <button class="notes-<%=(game.notes !== null)%> notes-button"><%= (game.notes) ? "📝" : ""%></button>
                     </div>
                     <div class="iframe-section iframe-active-false">
-                        <iframe src="https://lichess.org/embed/game/<%=game.link%>?theme=auto&bg=auto"></iframe>
+                        <iframe class="lichess-embed" data-src = "https://lichess.org/embed/game/<%=game.link%>?theme=auto&bg=auto" src=""></iframe>
                     </div>
                     <div class="notes-section note-active-false">
                         <p><%= game.notes %></p>

@@ -13,8 +13,10 @@ function getNotes(e) {
 function getIframe(e) {
     const button = e.currentTarget;
     const container = button.closest(".game-container");
-    const iframe = container.querySelector(".iframe-section");
-    iframe.classList.toggle("iframe-active-false");
+    const iframeSection = container.querySelector(".iframe-section");
+    const iFrame = iframeSection.querySelector(".lichess-embed");
+    iFrame.src = iFrame.dataset.src;
+    iframeSection.classList.toggle("iframe-active-false");
     container.scrollIntoView({behavior: "smooth"});
 }
 

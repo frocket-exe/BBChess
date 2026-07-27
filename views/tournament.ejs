@@ -41,7 +41,7 @@
                             <p class="game-card-white-player"><span style="background-color: white; border-radius: 15px;">White</span> - <a style="font-weight:inherit; color:inherit;text-decoration:none;" href="/players/<%=game.whiteName%>" class="game-win-<%=(game.result==="1-0")%>"><%=game.whiteName%></a></p>
                         </div>
                         <p class="game-card-result"><%=game.result%></p>
-                        <p class="game-card-black-player"><a style="font-weight:inherit; color:inherit;text-decoration:none;" href="/players/<%=game.blackName%>" class="game-win-<%=(game.result==="0-1")%>"><%=game.blackName%></a> - <span style="background-color: rgb(24, 24, 24); border-radius: 15px; color: rgb(231, 231, 231);">Black</span></p>
+                        <p class="game-card-black-player"><a style="font-weight:inherit; color:inherit;text-decoration:none;" href="/players/<%=game.blackName%>" class="game-win-<%=(game.result==="0-1")%>"><%=game.blackName%></a> - <span class="game-card-black-bg">Black</span></p>
                         <p class="game-card-type"><%= (game.locationID == 1) ? "Online" : "OTB" %></p>
                         <p class="game-card-date"><%=game.dateStr%></p>
                         <button class="iframe-button-<%=(game.link !== null)%> iframe-button"><%= (game.link) ? "🔽" : ""%></button>

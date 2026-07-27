@@ -1,17 +1,27 @@
 let notesButtons = document.getElementsByClassName("notes-button");
+let iframeButtons = document.getElementsByClassName("iframe-button");
+
 
 function getNotes(e) {
     const button = e.currentTarget;
     const container = button.closest(".game-container");
     const notes = container.querySelector(".notes-section");
     notes.classList.toggle("note-active-false");
-    notes.scrollIntoView({behavior: "smooth"});
+    container.scrollIntoView({behavior: "smooth"});
 }
 
-// for (var i = 0; i < notesButtons.length; i++) {
-//     notesButtons[i].addEventListener('click', event => {alert("Hello World!");});
-// }
+function getIframe(e) {
+    const button = e.currentTarget;
+    const container = button.closest(".game-container");
+    const iframe = container.querySelector(".iframe-section");
+    iframe.classList.toggle("iframe-active-false");
+    container.scrollIntoView({behavior: "smooth"});
+}
 
 for (var i = 0; i < notesButtons.length; i++) {
     notesButtons[i].addEventListener('click', getNotes);
+}
+
+for (var i = 0; i < iframeButtons.length; i++) {
+    iframeButtons[i].addEventListener('click', getIframe);
 }

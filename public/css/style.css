@@ -198,6 +198,12 @@ body.player-body{
     border-radius: 15px;
 }
 
+.game-card-white-player-div{
+    display: flex;
+    justify-content: right;
+    width: 17.5vw;
+}
+
 .game-card-white-player{
     font-size: 2.5vw;
 }
@@ -228,7 +234,6 @@ body.player-body{
     width: 3.5vw;
     height: 3.5vw;
     font-size: 2.5vw;
-    margin-right: 20px;
     background-color: rgba(0, 0, 0, 0);
     border-width: 0px;
 }
@@ -243,6 +248,29 @@ body.player-body{
 
 .notes-false{
     display: none;
+}
+
+.iframe-button{
+    width: 3.5vw;
+    height: 3.5vw;
+    font-size: 2.5vw;
+    background-color: rgba(0, 0, 0, 0);
+    border-width: 0px;
+}
+
+.iframe-button-false{
+    display: none;
+}
+
+.iframe-active-false{
+    display: none;
+}
+
+.iframe-section iframe{
+    padding: 20px;
+    width: 48vw;
+    height: 32vw;
+    border: none;
 }
 
 .elo-list{
@@ -410,15 +438,15 @@ body.player-body{
 
 .ranking-1{
     background: linear-gradient(140deg, rgb(246, 211, 34) 0%, rgb(255, 240, 108) 100%);
-    margin-left: 30px;
-    margin-right: 60px;
+    margin-left: 28px;
+    margin-right: 58px;
     height: 80px;
 }
 
 .ranking-2{
     background: linear-gradient(140deg, rgb(166, 165, 165) 0%, rgb(235, 241, 242) 100%);
-    margin-left: 32px;
-    margin-right: 62px;
+    margin-left: 31px;
+    margin-right: 61px;
     height: 78px;
 }
 

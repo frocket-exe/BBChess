@@ -395,10 +395,10 @@ body.player-body{
 .ranking-card{
     display: flex;
     flex-direction: row;
-    height: 80px;
+    height: 70px;
     border-radius: 10px;
-    margin-left: 30px;
-    margin-right: 60px;
+    margin-left: 40px;
+    margin-right: 70px;
     margin-bottom: 5px;
     padding-left: 20px;
     background-color: rgb(240, 248, 255);
@@ -409,15 +409,56 @@ body.player-body{
 }
 
 .ranking-1{
-    background-color: rgb(246, 226, 45);;
+    background: linear-gradient(140deg, rgb(246, 211, 34) 0%, rgb(255, 240, 108) 100%);
+    margin-left: 30px;
+    margin-right: 60px;
+    height: 80px;
 }
 
 .ranking-2{
-    background-color: rgb(215, 216, 216);;
+    background: linear-gradient(140deg, rgb(166, 165, 165) 0%, rgb(235, 241, 242) 100%);
+    margin-left: 32px;
+    margin-right: 62px;
+    height: 78px;
 }
 
 .ranking-3{
-    background-color: rgb(244, 182, 77);;
+    background: linear-gradient(140deg, rgb(243, 176, 61) 0%, rgb(253, 195, 95) 100%);
+    margin-left: 34px;
+    margin-right: 64px;
+    height: 76px;
+}
+
+
+.shine-true {
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 3s ease;
+}
+
+.shine-true::before {
+    content: '';
+    position: absolute;
+    height: 250%;
+    width: 40px;
+    top: 0;
+    left: -60px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transform: rotate(45deg) translateY(-35%);
+    animation: shine 4s ease infinite;
+}
+
+@keyframes shine {
+  0% {
+    left: -80px;
+  }
+  40% {
+    left: calc(100% + 20px);
+  }
+  100% {
+    left: calc(100% + 20px);
+  }
 }
 
 .ranking-card-position{

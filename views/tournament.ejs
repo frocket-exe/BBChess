@@ -25,7 +25,7 @@
         <div>
             <h2 class="section-title">Rankings:</h2>
             <% tournament.players.forEach(player => { %>
-                <div class="ranking-card ranking-<%=player.finalPosition%>">
+                <div class="ranking-card ranking-<%=player.finalPosition%> shine-<%= player.finalPosition<=3 %>">
                     <p class="ranking-card-position"><%= player.finalPosition %></p>
                     <a href="/players/<%= player.fName %>" style="font-weight:inherit; color:inherit;text-decoration:none;" class="ranking-card-player"><%= player.fName %> <%= player.sName %></a>
                     <p class="ranking-card-points"><%= player.score %> point<span class="points-<%=player.score%>">s</span> (<span class="wins"><%= player.wins %></span>/<span class="losses"><%= player.losses %></span>/<%= player.draws %>)</p>

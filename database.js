@@ -46,10 +46,10 @@ async function getPlayers() {
     const db = await openDB();
     const players = await db.all(`SELECT * FROM players`);
     for await (const player of players) {
-        let WDL = await getStats(player.playerID);
-        player.wins = WDL[0];
-        player.draws = WDL[1];
-        player.losses = WDL[2];
+        let WLD = await getStats(player.playerID);
+        player.wins = WLD[0];
+        player.losses = WLD[1];
+        player.draws = WLD[2];
     }
     players.sort((a, b) => parseFloat(b.bbcElo) - parseFloat(a.bbcElo));
     return players;
@@ -142,10 +142,10 @@ async function getPlayerData(playerID) {
     const player = await db.get(`SELECT * FROM players WHERE playerID = ?`, playerID);
     player.dobStr = dateStr(player.dob);
     player.age = await getAge(player.dob);
-    let WDL = await getStats(player.playerID);
-    player.wins = WDL[0];
-    player.draws = WDL[1];
-    player.losses = WDL[2];
+    let WLD = await getStats(player.playerID);
+    player.wins = WLD[0];
+    player.losses = WLD[1];
+    player.draws = WLD[2];
     player.rating = {};
     const playerRatings =  await getExternalElo(playerID);
     player.rating.lichessElo = playerRatings[0];

@@ -998,47 +998,66 @@ body.player-body{
     }
 
     .game-card-extras{
+        align-self: flex-start;
         flex-wrap: wrap;
-        background-color: lightblue;
-        align-items: flex-start;
+        align-items: center;
         width: 30vw;
         row-gap: 0px;
-        height: 20vw;
+        height: auto;
     }
 
     .game-card-type{
         font-size: 3.5vw;
         margin-top: 2px;
+        padding-bottom: 0px;
         margin-bottom: 2px;
+        height: auto;
     }
 
     .game-card-date{
-        font-size: 3.5vw;
+        font-size: 3.2vw;
         margin-top: 2px;
+        padding-bottom: 0px;
         margin-bottom: 2px;
+        height: auto;
     }
 
     .iframe-button{
         margin: 0px;
-        font-size: 4vw;
+        font-size: 5vw;
         padding: 0px;
+        margin-bottom: 4vw;
+        margin-right: 3vw;
         width: 4vw;
-        background-color: coral;
     }
 
     .game-card-view-game{
         margin: 0px;
-        width: 4vw;
-        height: 4vw;
+        width: 5vw;
+        height: auto;
         padding-top: 0px;
     }
 
-    .view-game-true{
-        height: 40vw;
+    .view-game-true {
+        display: inline-flex;
+        background-color: yellow;
     }
 
     .notes-button{
         margin: 0px;
-        font-size: 4vw;
+        padding: 0px;
+        padding-top: 5px;
+        font-size: 5vw;
+    }
+
+    .iframe-section iframe{
+        padding: 20px;
+        width: 60vw;
+        height: 90vw;
+        border: none;
+    }
+
+    .notes-section{
+        font-size: 3vw;
     }
 }

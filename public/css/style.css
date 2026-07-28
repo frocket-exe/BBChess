@@ -520,7 +520,6 @@ body.player-body{
 
 .shine-true {
   position: relative;
-  cursor: pointer;
   overflow: hidden;
   transition: all 3s ease;
 }
@@ -549,6 +548,15 @@ body.player-body{
   }
 }
 
+.ranking-card-point-section{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 1.2vw;
+}
+
 .ranking-card-position{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 28px;
@@ -559,11 +567,6 @@ body.player-body{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 30px;
     font-weight: 800;
-}
-
-.ranking-card-points{
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 1.2vw;
 }
 
 .tournament-head{
@@ -684,6 +687,9 @@ body.player-body{
     width: 6vw;
     border-radius: 20px;
     box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4);
+}
+.tournament-image img{
+    width: 450px; height: auto;
 }
 
 .players-nav{
@@ -825,7 +831,6 @@ body.player-body{
     /* PLAYER PAGE */
 
     .profile-head{
-        /* background-color: red; */
         flex-direction: row;
         flex-wrap: wrap;
         gap: 4vw;
@@ -835,7 +840,6 @@ body.player-body{
         order: 0;
         width: 18vw;
         height: auto;
-        /* background-color: aqua; */
     }
 
     .player-nav img{
@@ -846,7 +850,6 @@ body.player-body{
 
     .profile-image{
         order: 1;
-        /* background-color: aquamarine; */
     }
 
     .profile-image img{
@@ -857,7 +860,6 @@ body.player-body{
     }
 
     .profile-head-left{
-        /* background-color: blueviolet; */
         width: 80vw;
         margin-left: 2vw;
         padding-left: 4vw;
@@ -871,7 +873,6 @@ body.player-body{
     }
 
     .profile-head-left h1{
-        /* background-color: orange; */
         width: 90vw;
         font-size: 8vw;
     }
@@ -886,7 +887,6 @@ body.player-body{
         width: 35vw;
         margin-left: 5vw;
         margin-bottom: 2vw;
-        /* background-color: darkseagreen; */
     }
 
     .elo-list h4{
@@ -905,7 +905,6 @@ body.player-body{
     .achievements{
         order: 4;
         width: 35vw;
-        /* background-color: yellow; */
     }
 
     .achievements h3{
@@ -913,7 +912,7 @@ body.player-body{
     }
 
     .achievements p{
-        font-size: 3vw;
+        font-size: 3.25vw;
     }
 
     .section-title{
@@ -958,6 +957,7 @@ body.player-body{
     .game-card{
         flex-wrap: wrap;
         gap: 3vw;
+        padding-bottom: 10px;
     }
 
     .result{
@@ -975,7 +975,7 @@ body.player-body{
     .game-card-white-player-mobile{
         display: unset;
         width: 15vw;
-        font-size: 4.5vw;
+        font-size: 5vw;
         margin-top: 0px;
         text-align: center;
     }
@@ -992,7 +992,7 @@ body.player-body{
     .game-card-black-player-mobile{
         display: unset;
         width: 15vw;
-        font-size: 4.5vw;
+        font-size: 5vw;
         margin-top: 0px;
         text-align: center;
     }
@@ -1002,7 +1002,7 @@ body.player-body{
         flex-wrap: wrap;
         align-items: center;
         width: 30vw;
-        row-gap: 0px;
+        row-gap: 5px;
         height: auto;
     }
 
@@ -1059,5 +1059,102 @@ body.player-body{
 
     .notes-section{
         font-size: 3vw;
+    }
+
+    /* TOURNAMENT PAGE */
+
+    .tournament-head{
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 2vw;
+    }
+
+    .tournament-nav{
+        width: 18vw;
+        height: auto;
+        margin-left: 2vw;
+    }
+
+    .tournament-nav img{
+        width: 15vw;
+        height: auto;
+        margin: 0px;
+    }
+
+    .tournament-image img{
+        width: 65vw;
+        height: auto;
+        margin-top: 10px;
+        margin-left: 10px;
+        border-radius: 10px;
+    }
+
+    .tournament-descriptions{
+        width: 80vw;
+        margin-left: 2vw;
+        padding-left: 4vw;
+        padding-bottom: 10px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        align-items: center;
+        column-gap: 4vw;
+    }
+
+    .tournament-descriptions h1{
+        width: 90vw;
+        font-size: 8vw;
+        margin-top: 0px;
+    }
+
+    .tournament-descriptions p{
+        margin: 0px;
+        font-size: 4vw;
+        padding-top: 10px;
+        padding-bottom: 5px;
+        padding-left: 5px;
+    }
+
+    .ranking-card{
+        margin-left: 4vw;
+        margin-right: 4vw;
+        gap: 3vw;
+    }
+
+    .ranking-3{
+        margin-left: 3vw;
+        margin-right: 3vw;
+    }
+
+    .ranking-2{
+        margin-left: 2.5vw;
+        margin-right: 2.5vw;
+    }
+
+    .ranking-1{
+        margin-left: 2vw;
+        margin-right: 2vw;
+    }
+
+    .ranking-card-position{
+        font-size: 6.5vw;
+    }
+
+    .ranking-card-player{
+        font-size: 6.5vw;
+    }
+
+    .ranking-card-point-section{
+        font-size: 3.75vw;
+        flex-wrap: wrap;
+        width: 20vw;
+        gap: 0px;
+        margin-left: 12px;
+    }
+
+    .ranking-card-point-section p{
+        margin-top: 2px;
+        margin-bottom: 2px;
     }
 }

@@ -2,6 +2,7 @@
 <html lang="en">
 
     <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>BBChess - <%=player.fName%></title>
         <link rel="stylesheet" type="text/css" href="/css/style.css" />
     </head>
@@ -18,8 +19,8 @@
                 <p>Age: <%=player.age%></p>
                 <p>DoB: <%=player.dobStr%></p>
             </div>
-            <div>
-                <img src="/images/profiles/<%= player.photoPath %>" alt="Player profile photo" style="height: 350px; width: auto;">
+            <div class="profile-image">
+                <img src="/images/profiles/<%= player.photoPath %>" alt="Player profile photo">
             </div>
             <div class="elo-list">
                 <% if(player.lichessUN !== null) {%>

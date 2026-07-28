@@ -61,7 +61,7 @@ body.player-body{
     padding: 5px;
     padding-left: 15px;
     border-radius: 10px;
-    border-width: 3px;
+    border-width: 2px;
     border-style: solid;
     border-color: rgb(60, 60, 60);
 }
@@ -162,6 +162,14 @@ body.player-body{
     color: rgb(230, 230, 230);
 }
 
+.elo-list a{
+    font-size: 0.9vw;
+    margin: 0px;
+    margin-bottom: 5px;
+    font-weight: 700;
+    color: rgb(230, 230, 230);
+}
+
 .achievements h3{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 1.2vw;
@@ -224,6 +232,10 @@ body.player-body{
     font-size: 2.5vw;
 }
 
+.game-card-white-player-mobile{
+    display: none;
+}
+
 .game-card-result{
     font-size: 3vw;
     font-weight: 700;
@@ -231,6 +243,10 @@ body.player-body{
 
 .game-card-black-player{
     font-size: 2.5vw;
+}
+
+.game-card-black-player-mobile{
+    display: none;
 }
 
 .game-card-black-bg{
@@ -243,6 +259,14 @@ body.player-body{
     font-size: 1.5vw;
 }
 
+.game-card-extras{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 2vw;
+    justify-content: center;
+}
+
 .game-card-date{
     font-size: 1.5vw;
 }
@@ -250,6 +274,7 @@ body.player-body{
 .game-card-view-game{
     width: 2.5vw;
     height: auto;
+    padding-top: 22px;
 }
 
 .notes-button{
@@ -258,6 +283,7 @@ body.player-body{
     font-size: 2.5vw;
     background-color: rgba(0, 0, 0, 0);
     border-width: 0px;
+    padding-top: 10px;
 }
 
 .notes-section{
@@ -278,6 +304,7 @@ body.player-body{
     font-size: 2.5vw;
     background-color: rgba(0, 0, 0, 0);
     border-width: 0px;
+    padding-top: 9px;
 }
 
 .iframe-button-false{
@@ -699,7 +726,7 @@ body.player-body{
     .home-box button{
         width: 80vw;
         font-size: 10vw;
-        height: 30vw;
+        height: 25vw;
     }
 
 
@@ -714,7 +741,7 @@ body.player-body{
     .players-nav h1{
         margin-top: 5px;
         margin-left: 10px;
-        margin-bottom: 5px;
+        margin-bottom: 2px;
     }
 
     .players-container{
@@ -725,10 +752,11 @@ body.player-body{
         width: 86vw;
         height: auto;
         padding-left: 5px;
+        border-radius: 18px;
     }
 
     .player img{
-        border-radius: 20px;
+        border-radius: 18px;
     }
 
     /* TOURNAMENTS PAGE */
@@ -771,7 +799,7 @@ body.player-body{
     }
 
     .tournament-card-main p{
-        font-size: 2.5vw;
+        font-size: 3.5vw;
         margin-top: 8px;
         margin-bottom: 5px;
     }
@@ -781,7 +809,7 @@ body.player-body{
         margin-left: 15px;
         margin-top: 0px;
         order: 2;
-        font-size: 2.5vw;
+        font-size: 3.5vw;
         line-height: 8px;
         margin-bottom: 8px;
     }
@@ -789,7 +817,7 @@ body.player-body{
     .tournament-winner{
         margin-top: 0px;
         order: 3;
-        font-size: 2.5vw;
+        font-size: 3.5vw;
         line-height: 4px;
     }
 
@@ -797,59 +825,220 @@ body.player-body{
     /* PLAYER PAGE */
 
     .profile-head{
-        background-color: red;
+        /* background-color: red; */
         flex-direction: row;
         flex-wrap: wrap;
+        gap: 4vw;
     }
 
     .player-nav{
         order: 0;
         width: 18vw;
         height: auto;
-        background-color: aqua;
+        /* background-color: aqua; */
     }
 
     .player-nav img{
         width: 15vw;
         height: auto;
-        margin:0px;
+        margin: 0px;
     }
 
     .profile-image{
         order: 1;
-        background-color: aquamarine;
+        /* background-color: aquamarine; */
     }
 
     .profile-image img{
-        width: 50vw;
+        width: 57vw;
         height: auto;
+        margin-top: 10px;
+        margin-left: 10px;
     }
 
     .profile-head-left{
-        background-color: blueviolet;
+        /* background-color: blueviolet; */
         width: 80vw;
         margin-left: 2vw;
+        padding-left: 4vw;
         order: 2;
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
         justify-content: flex-start;
         align-items: center;
+        column-gap: 4vw;
     }
 
     .profile-head-left h1{
-        background-color: orange;
+        /* background-color: orange; */
         width: 90vw;
         font-size: 8vw;
     }
 
+    .profile-head-left p{
+        margin: 0px;
+        font-size: 4vw;
+    }
+
     .elo-list{
         order: 3;
-        display: none;
+        width: 35vw;
+        margin-left: 5vw;
+        margin-bottom: 2vw;
+        /* background-color: darkseagreen; */
+    }
+
+    .elo-list h4{
+        font-size: 4vw;
+        margin-top: 0px;
+    }
+
+    .elo-list p{
+        font-size: 3.2vw;
+    }
+
+    .elo-list a{
+        font-size: 3.5vw;
     }
 
     .achievements{
         order: 4;
+        width: 35vw;
+        /* background-color: yellow; */
+    }
+
+    .achievements h3{
+        font-size: 4vw;
+    }
+
+    .achievements p{
+        font-size: 3vw;
+    }
+
+    .section-title{
+        margin-left: 30px;
+    }
+
+    .tournament-card{
+        margin-left: 3vw;
+        width: 78vw;
+        height: auto;
+        padding-left: 5vw;
+        padding-right: 6vw;
+        padding-top: 2vw;
+        padding-bottom: 3vw;
+    }
+
+    .tournament-title{
+        font-size: 5vw;
+        margin: 0px;
+    }
+
+    .position{
+        font-size: 4vw;
+        margin: 0px;
+        text-align: center;
+        padding-left: 7px;
+        padding-right: 7px;
+        padding-top: 3px;
+        padding-bottom: 4px;
+    }
+
+    .tournament-games{
+        padding-bottom: 30px;
+    }
+
+    .game-container{
+        margin-left: 3vw;
+        width: 85vw;
+        padding-left: 3vw;
+    }
+
+    .game-card{
+        flex-wrap: wrap;
+        gap: 3vw;
+    }
+
+    .result{
+        width: 80vw;
+        font-size: 4vw;
+        margin-top: 5px;
+        margin-bottom: 0px;
+        text-align: center;
+    }
+
+    .game-card-white-player{
         display: none;
+    }
+
+    .game-card-white-player-mobile{
+        display: unset;
+        width: 15vw;
+        font-size: 4.5vw;
+        margin-top: 0px;
+        text-align: center;
+    }
+
+    .game-card-result{
+        font-size: 6vw;
+        margin-top: 0px;
+    }
+
+    .game-card-black-player{
+        display: none;
+    }
+
+    .game-card-black-player-mobile{
+        display: unset;
+        width: 15vw;
+        font-size: 4.5vw;
+        margin-top: 0px;
+        text-align: center;
+    }
+
+    .game-card-extras{
+        flex-wrap: wrap;
+        background-color: lightblue;
+        align-items: flex-start;
+        width: 30vw;
+        row-gap: 0px;
+        height: 20vw;
+    }
+
+    .game-card-type{
+        font-size: 3.5vw;
+        margin-top: 2px;
+        margin-bottom: 2px;
+    }
+
+    .game-card-date{
+        font-size: 3.5vw;
+        margin-top: 2px;
+        margin-bottom: 2px;
+    }
+
+    .iframe-button{
+        margin: 0px;
+        font-size: 4vw;
+        padding: 0px;
+        width: 4vw;
+        background-color: coral;
+    }
+
+    .game-card-view-game{
+        margin: 0px;
+        width: 4vw;
+        height: 4vw;
+        padding-top: 0px;
+    }
+
+    .view-game-true{
+        height: 40vw;
+    }
+
+    .notes-button{
+        margin: 0px;
+        font-size: 4vw;
     }
 }

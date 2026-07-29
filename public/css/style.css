@@ -113,8 +113,8 @@ body.player-body{
 .profile-head{
     margin-left: 10px;
     margin-right: 10px;
-    padding-top: 5px;
-    padding-bottom: 5px;
+    padding-top: 15px;
+    padding-bottom: 15px;
     border-radius: 30px;
     display: flex;
     flex-direction: row;
@@ -742,7 +742,8 @@ body.player-body{
     justify-content: center;
     align-items: center;
     gap: 20px;
-    width: 10vw;
+    width: 7vw;
+    padding-left: 2.5vw;
 }
 
 .tournament-nav img{
@@ -768,6 +769,7 @@ body.player-body{
     gap: 20px;
     width: 6vw;
     margin-left: 12px;
+    padding-left: 2vw;
 }
 
 .player-nav img{

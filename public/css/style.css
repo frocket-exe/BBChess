@@ -3,6 +3,8 @@ body.home {
   /* background-size: auto 125%; */
   background-position: center;
   height: 100vh;
+  margin: 0px;
+  padding: 0px;
 }
 
 body.tournaments{
@@ -206,6 +208,17 @@ body.player-body{
     align-items: center;
 }
 
+.tournament-game-card{
+    display: flex;
+    flex-direction: row;
+    justify-content: baseline;
+    gap: 2vw;
+    height: 100px;
+    font-size: 50px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    align-items: center;
+}
+
 .result{
     font-size: 2.5vw;
     font-weight: 600;
@@ -318,7 +331,7 @@ body.player-body{
 .iframe-section iframe{
     padding: 20px;
     width: 48vw;
-    height: 32vw;
+    height: 40vw;
     border: none;
 }
 
@@ -521,7 +534,7 @@ body.player-body{
 .shine-true {
   position: relative;
   overflow: hidden;
-  transition: all 3s ease;
+  transition: all 2.5s ease;
 }
 
 .shine-true::before {
@@ -613,14 +626,13 @@ body.player-body{
 }
 
 .home-box{
-    height: 88vh;
-    width: 95vw;
+    height: 90vh;
+    width: 100vw;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 10px;
-    margin-bottom: 10px;
 }
 
 .home-box h1{
@@ -720,6 +732,10 @@ body.player-body{
 @media (max-width: 900px) {
     /* HOME PAGE */
 
+    .home-box{
+        /* background-color: #ff3232; */
+    }
+
     .home-box h1{
         font-size: 20vw;
     }
@@ -727,6 +743,8 @@ body.player-body{
     .home-box p{
         text-align: center;
         font-size: 6vw;
+        margin-left: 4vw;
+        margin-right: 4vw;
     }
 
     .home-box button{
@@ -857,6 +875,7 @@ body.player-body{
         height: auto;
         margin-top: 10px;
         margin-left: 10px;
+        border-radius: 10px;
     }
 
     .profile-head-left{
@@ -890,12 +909,12 @@ body.player-body{
     }
 
     .elo-list h4{
-        font-size: 4vw;
+        font-size: 4.25vw;
         margin-top: 0px;
     }
 
     .elo-list p{
-        font-size: 3.2vw;
+        font-size: 3.4vw;
     }
 
     .elo-list a{
@@ -908,11 +927,12 @@ body.player-body{
     }
 
     .achievements h3{
-        font-size: 4vw;
+        font-size: 4.25vw;
+        margin-top: 10px;
     }
 
     .achievements p{
-        font-size: 3.25vw;
+        font-size: 3.5vw;
     }
 
     .section-title{
@@ -957,14 +977,15 @@ body.player-body{
     .game-card{
         flex-wrap: wrap;
         gap: 3vw;
-        padding-bottom: 10px;
+        padding-bottom: 5px;
+        padding-top: 5px;
     }
 
     .result{
         width: 80vw;
         font-size: 4vw;
         margin-top: 5px;
-        margin-bottom: 0px;
+        margin-bottom: 3px;
         text-align: center;
     }
 
@@ -1111,14 +1132,14 @@ body.player-body{
     .tournament-descriptions p{
         margin: 0px;
         font-size: 4vw;
-        padding-top: 10px;
+        padding-top: 5px;
         padding-bottom: 5px;
-        padding-left: 5px;
+        padding-left: 8px;
     }
 
     .ranking-card{
-        margin-left: 4vw;
-        margin-right: 4vw;
+        margin-left: 5vw;
+        margin-right: 5vw;
         gap: 3vw;
     }
 
@@ -1128,13 +1149,13 @@ body.player-body{
     }
 
     .ranking-2{
-        margin-left: 2.5vw;
-        margin-right: 2.5vw;
+        margin-left: 2vw;
+        margin-right: 2vw;
     }
 
     .ranking-1{
-        margin-left: 2vw;
-        margin-right: 2vw;
+        margin-left: 1vw;
+        margin-right: 1vw;
     }
 
     .ranking-card-position{
@@ -1143,6 +1164,7 @@ body.player-body{
 
     .ranking-card-player{
         font-size: 6.5vw;
+        width: 55vw;
     }
 
     .ranking-card-point-section{
@@ -1156,5 +1178,27 @@ body.player-body{
     .ranking-card-point-section p{
         margin-top: 2px;
         margin-bottom: 2px;
+    }
+
+    .tournament-game-card{
+        padding-top: 15px;
+        gap: 10px;
+        height: auto;
+    }
+
+    .tournament-game-card-white-player-mobile{
+        width: 15vw;
+        font-size: 5vw;
+        margin-top: 0px;
+        text-align: center;
+        line-height: 8vw;
+    }
+
+    .tournament-game-card-black-player-mobile{
+        width: 15vw;
+        font-size: 5vw;
+        margin-top: 0px;
+        text-align: center;
+        line-height: 8vw;
     }
 }

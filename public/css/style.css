@@ -912,6 +912,7 @@ body.player-body{
         order: 0;
         width: 18vw;
         height: auto;
+        margin-left: 2vw;
     }
 
     .player-nav img{
@@ -1143,7 +1144,7 @@ body.player-body{
     .tournament-nav{
         width: 18vw;
         height: auto;
-        margin-left: 2vw;
+        margin-left: 0.5vw;
     }
 
     .tournament-nav img{
@@ -1246,7 +1247,7 @@ body.player-body{
 
     .tournament-game-card-white-player-mobile{
         display: unset;
-        width: 15vw;
+        width: 20vw;
         font-size: 5vw;
         margin-top: 0px;
         text-align: center;

@@ -38,7 +38,8 @@ body.player-body{
 .players-container{
     display: flex;
     flex-direction: row;
-    gap: 10px;
+    row-gap: 0.5vw;
+    column-gap: 0.8vw;
     margin-left: 1vw;
     margin-right: 2vw;
     flex-wrap: wrap;
@@ -223,6 +224,14 @@ body.player-body{
     font-size: 2.5vw;
     font-weight: 600;
     color: rgb(20, 20, 20);
+    margin-top: 3px;
+    margin-bottom: 4px;
+    margin-right: 5px;
+    margin-left: 5px;
+    padding-top: 3px;
+    padding-bottom: 4px;
+    padding-right: 5px;
+    padding-left: 5px;
 }
 
 .result-Win{
@@ -235,10 +244,29 @@ body.player-body{
     border-radius: 15px;
 }
 
+.white-highlight{
+    background-color: white; 
+    border-radius: 15px;
+    padding: 4px;
+    padding-top: 2px;
+}
+
+.black-highlight{
+    background-color: rgb(30, 30, 30); 
+    border-radius: 15px; 
+    color: rgb(240, 240, 240);
+    padding: 4px;
+    padding-top: 2px;
+}
+
+.bold-true{
+    font-weight: 600;
+}
+
 .game-card-white-player-div{
     display: flex;
     justify-content: right;
-    width: 17.5vw;
+    width: 18.5vw;
 }
 
 .game-card-white-player{
@@ -260,12 +288,6 @@ body.player-body{
 
 .game-card-black-player-mobile{
     display: none;
-}
-
-.game-card-black-bg{
-    background-color: rgb(30, 30, 30); 
-    border-radius: 15px; 
-    color: rgb(240, 240, 240);
 }
 
 .game-card-type{
@@ -297,6 +319,7 @@ body.player-body{
     background-color: rgba(0, 0, 0, 0);
     border-width: 0px;
     padding-top: 10px;
+    cursor: pointer;
 }
 
 .notes-section{
@@ -318,6 +341,7 @@ body.player-body{
     background-color: rgba(0, 0, 0, 0);
     border-width: 0px;
     padding-top: 9px;
+    cursor: pointer;
 }
 
 .iframe-button-false{
@@ -372,10 +396,14 @@ body.player-body{
 }
 
 .position{
-    border-radius: 25px;
+    border-radius: 20px;
     font-size: 25px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-weight: 600;
+    padding-top: 3px;
+    padding-bottom: 4px;
+    padding-left: 8px;
+    padding-right: 10px;
 }
 
 .position-1{
@@ -388,6 +416,10 @@ body.player-body{
 
 .position-3{
     background-color: rgb(244, 182, 77);
+}
+
+.tournament-games{
+    padding-bottom: 30px;
 }
 
 .section-title{
@@ -479,11 +511,17 @@ body.player-body{
 .game-win-true{
     background-color: rgb(63, 241, 63);
     border-radius: 15px;
+    padding-bottom: 3px;
+    padding-left: 4px;
+    padding-right: 4px;
 }
 
 .game-win-false{
     background-color: #ff3232;
     border-radius: 15px;
+    padding-bottom: 3px;
+    padding-left: 4px;
+    padding-right: 4px;
 }
 
 .points-1{
@@ -580,6 +618,8 @@ body.player-body{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 30px;
     font-weight: 800;
+    width: auto;
+    min-width: 10vw;
 }
 
 .tournament-head{
@@ -591,8 +631,8 @@ body.player-body{
     border-radius: 20px;
     margin-left: 5px;
     margin-right: 5px;
-    padding-top: 5px;
-    padding-bottom: 5px;
+    padding-top: 15px;
+    padding-bottom: 15px;
 }
 
 .tournament-heading{
@@ -616,6 +656,14 @@ body.player-body{
     color: rgb(255, 50, 50);
 }
 
+.tournament-game-card-white-player-mobile{
+    display: none;
+}
+
+.tournament-game-card-black-player-mobile{
+    display: none;
+}
+
 .note-active-false{
     display: none;
 }
@@ -623,6 +671,7 @@ body.player-body{
 .homepage-button{
     width: 50vw;
     height: 20vh;
+    cursor: pointer;
 }
 
 .home-box{
@@ -672,12 +721,13 @@ body.player-body{
 }
 
 .home-icon{
-    size: 3vw;
-    height: 3vw;
+    size: 3.75vw;
+    height: 3.75vw;
     border-radius: 10px;
     box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4);
     margin: 8px;
     margin-left: 15px;
+    margin-right: 0px;
 }
 
 .tournaments-header{
@@ -742,7 +792,7 @@ body.player-body{
 
     .home-box p{
         text-align: center;
-        font-size: 6vw;
+        font-size: 5.2vw;
         margin-left: 4vw;
         margin-right: 4vw;
     }
@@ -760,6 +810,7 @@ body.player-body{
         height: 13vw;
         margin-left: 5px;
         margin-bottom: 10px;
+        margin-right: 10px;
     }
 
     .players-nav h1{
@@ -770,6 +821,7 @@ body.player-body{
 
     .players-container{
         margin-bottom: 30px;
+        row-gap: 2vw;
     }
 
     .player{
@@ -958,14 +1010,7 @@ body.player-body{
         font-size: 4vw;
         margin: 0px;
         text-align: center;
-        padding-left: 7px;
-        padding-right: 7px;
-        padding-top: 3px;
-        padding-bottom: 4px;
-    }
-
-    .tournament-games{
-        padding-bottom: 30px;
+        border-radius: 17px;
     }
 
     .game-container{
@@ -977,16 +1022,15 @@ body.player-body{
     .game-card{
         flex-wrap: wrap;
         gap: 3vw;
-        padding-bottom: 5px;
+        padding-bottom: 17px;
         padding-top: 5px;
     }
 
     .result{
         width: 80vw;
         font-size: 4vw;
-        margin-top: 5px;
-        margin-bottom: 3px;
         text-align: center;
+        padding: 0px;
     }
 
     .game-card-white-player{
@@ -999,6 +1043,7 @@ body.player-body{
         font-size: 5vw;
         margin-top: 0px;
         text-align: center;
+        line-height: 7vw;
     }
 
     .game-card-result{
@@ -1016,6 +1061,7 @@ body.player-body{
         font-size: 5vw;
         margin-top: 0px;
         text-align: center;
+        line-height: 7vw;
     }
 
     .game-card-extras{
@@ -1088,6 +1134,8 @@ body.player-body{
         flex-direction: row;
         flex-wrap: wrap;
         gap: 2vw;
+        padding-top: 5px;
+        padding-bottom: 5px;
     }
 
     .tournament-nav{
@@ -1186,19 +1234,45 @@ body.player-body{
         height: auto;
     }
 
+    .white-highlight{
+        border-radius: 10px;
+    }
+
+    .black-highlight{
+        border-radius: 10px;
+    }
+
     .tournament-game-card-white-player-mobile{
+        display: unset;
         width: 15vw;
         font-size: 5vw;
         margin-top: 0px;
         text-align: center;
-        line-height: 8vw;
+        line-height: 8.5vw;
     }
 
     .tournament-game-card-black-player-mobile{
+        display: unset;
         width: 15vw;
         font-size: 5vw;
         margin-top: 0px;
         text-align: center;
-        line-height: 8vw;
+        line-height: 8.5vw;
+    }
+
+    .game-win-true{
+        background-color: rgb(63, 241, 63);
+        border-radius: 10px;
+        padding-bottom: 3px;
+        padding-left: 4px;
+        padding-right: 4px;
+    }
+
+    .game-win-false{
+        background-color: #ff3232;
+        border-radius: 10px;
+        padding-bottom: 3px;
+        padding-left: 4px;
+        padding-right: 4px;
     }
 }

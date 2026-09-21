@@ -371,10 +371,6 @@ body.player-body{
     text-shadow: -3px -3px 0 rgb(36, 27, 13), 3px -3px 0 rgb(36, 27, 13), -3px 3px 0 rgb(36, 27, 13), 3px 3px 0 rgb(36, 27, 13), 6px 6px 6px rgb(0, 0, 0, 0.4);
 }
 
-.players-tournaments{
-    gap: 40px;
-}
-
 .tournament-card{
     display: flex;
     flex-direction: row;
@@ -388,6 +384,7 @@ body.player-body{
     align-items: center;
     justify-content: baseline;
     gap: 40px;
+    margin-bottom: 40px;
 }
 
 .tournament-title{

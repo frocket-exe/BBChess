@@ -36,7 +36,7 @@
                 </div>
             <% }); %>
         </div>
-        <div class="tournament-games">
+        <div class="tournament-games visible-<%=tournament.games.length > 0%>">
             <h2 class="section-title">Games:</h2>
             <% tournament.games.forEach(game => { %>
                 <div class="game-container">

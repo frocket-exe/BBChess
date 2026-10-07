@@ -49,11 +49,11 @@
             <% player.tournaments.forEach(tournament => { %>
                 <div class="tournament-card">
                     <a href="/tournaments/<%=tournament.slug%>" class="tournament-title"><%=tournament.name%></a>
-                    <p class="position position-<%=tournament.finalPosition%>">Placing: <%=tournament.finalPosition%></p>
+                    <p class="position position-<%=tournament.finalPosition%> visible-<%=tournament.status == "Past"%>">Placing: <%=tournament.finalPosition%></p>
                 </div>
             <% }); %>
         </div>
-        <div class="tournament-games">
+        <div class="tournament-games  visible-<%=player.games.length > 0%>">
             <h2 class="section-title">Games:</h2>
             <% player.games.forEach(game => { %>
                 <div class="game-container">

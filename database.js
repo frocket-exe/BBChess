@@ -154,9 +154,11 @@ async function getPlayerData(playerID) {
     player.links = {'lichess': 'https://lichess.org/@/' + player.lichessUN, 'chessCom': 'https://chess.com/member/' + player.chessComUN};
     const tournaments = await db.all(`SELECT tournamentID, finalPosition FROM tournamentPlayers WHERE playerID = ?`, playerID);
     for await (const tournament of tournaments) {
-        tournamentData = await db.get(`SELECT name, slug FROM tournaments WHERE tournamentID = ?`, tournament.tournamentID);
+        tournamentData = await db.get(`SELECT name, slug, startDate, endDate FROM tournaments WHERE tournamentID = ?`, tournament.tournamentID);
         tournament.name = tournamentData.name;
         tournament.slug = tournamentData.slug;
+        const status = getTense(tournamentData.startDate, tournamentData.endDate);
+        tournament.status = status;
     }
     player.tournaments = tournaments;
     const games = await db.all(`SELECT * FROM games WHERE whiteID = ? OR blackID = ?`, playerID, playerID);

@@ -1,6 +1,5 @@
 body.home {
   background-image:linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2)), url('/images/backgrounds/homeBGPlain.png');
-  /* background-size: auto 125%; */
   background-position: center;
   height: 100vh;
   margin: 0px;
@@ -33,6 +32,14 @@ body.player-body{
     margin: 0px;
     margin-top: 30px;
     margin-bottom: 10px;
+}
+
+.visible-true {
+    display: block;
+}
+
+.visible-false {
+    display: none;
 }
 
 .players-container{
@@ -380,7 +387,7 @@ body.player-body{
     border-radius: 20px;
     margin-left: 30px;
     margin-right: 60px;
-    padding-left: 30px;
+    padding-left: 5px;
     align-items: center;    
     justify-content: baseline;
     gap: 40px;

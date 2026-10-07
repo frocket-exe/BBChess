@@ -30,8 +30,18 @@ app.get('/players/:id', asyncHandler(async (req, res) => {
         res.status(404);
         throw new Error('Player not found');
     } else {
-    res.render('player', {player: playerObj});
+    const today = new Date();
+    const dob = new Date(playerObj.dob)
+    if (
+        dob.getMonth() === today.getMonth() &&
+        dob.getDate() === today.getDate()
+    ) {
+        playerObj.isBirthday = true;
+    } else {
+        playerObj.isBirthday = false;
     }
+    res.render('player', {player: playerObj});
+        }
 }));
 
 app.get('/tournaments', asyncHandler(async (req, res) => {

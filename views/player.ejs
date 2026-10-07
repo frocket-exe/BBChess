@@ -4,10 +4,21 @@
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>BBChess - <%=player.fName%></title>
-        <link rel="stylesheet" type="text/css" href="/css/style.css?v=4.0.1" />
+        <link rel="stylesheet" type="text/css" href="/css/style.css?v=4.0.2" />
     </head>
 
     <body class="player-body">
+        <% if (player.isBirthday) { %>
+            <div class="birthday-overlay">
+                <video class="birthday-animation" autoplay muted playsinline onended="this.parentElement.classList.add('birthday-finished')">
+                    <source src="/videos/balloons.webm" type="video/webm">
+                </video>
+
+                <div class="birthday-text">
+                    HAPPY BIRTHDAY <%= player.fName.toUpperCase() %>!!!
+                </div>
+            </div>
+        <% } %>
         <div class="profile-head">
             <div class="player-nav">
                 <a href="/"><img src="/images/icons/homeIcon.png" alt="Back to home icon"></a>

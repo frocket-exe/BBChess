@@ -140,6 +140,7 @@ async function getExternalElo(playerID) {
 async function getPlayerData(playerID) {
     const db = await openDB();
     const player = await db.get(`SELECT * FROM players WHERE playerID = ?`, playerID);
+    player.dob = player.dob;
     player.dobStr = dateStr(player.dob);
     player.age = await getAge(player.dob);
     let WLD = await getStats(player.playerID);

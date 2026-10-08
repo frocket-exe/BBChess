@@ -51,7 +51,7 @@
             <div class="achievements">
                 <h3>Achievements:</h3>
                 <% player.achievements.forEach(achievement => { %>
-                    <p>🏆 <%=achievement.achievement%></p>
+                    <p title="<%=achievement.details %>">🏆 <%=achievement.achievement%></p>
                 <% }); %>
             </div>
         </div>

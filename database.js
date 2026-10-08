@@ -159,8 +159,10 @@ async function getPlayerData(playerID) {
         tournament.name = tournamentData.name;
         tournament.slug = tournamentData.slug;
         const status = getTense(tournamentData.startDate, tournamentData.endDate);
+        tournament.startDate = tournamentData.startDate
         tournament.status = status;
     }
+    tournaments.sort((a, b) => Date.parse(b.startDate) - Date.parse(a.startDate));
     player.tournaments = tournaments;
     const games = await db.all(`SELECT * FROM games WHERE whiteID = ? OR blackID = ?`, playerID, playerID);
     for await(const game of games) {
@@ -179,7 +181,7 @@ async function getPlayerData(playerID) {
     };
     games.sort((a, b) => Date.parse(b.date) - Date.parse(a.date));
     player.games = games;
-    const achievements = await db.all(`SELECT * FROM achievements WHERE playerID = ?`, playerID);
+    const achievements = await db.all(`SELECT * FROM achievements WHERE playerID = ? AND relevant = TRUE`, playerID);
     player.achievements = achievements;
     return(player);
 }

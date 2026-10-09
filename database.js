@@ -89,7 +89,9 @@ async function calcAllGamesElo() {
         player.bbcElo = 1069;
         player.gamesPlayed = 0;
     }
-    games.sort((a, b) => Date.parse(a.date) - Date.parse(b.date));
+    games.sort((a, b) =>
+        Date.parse(a.date) - Date.parse(b.date) || a.gameID - b.gameID
+    );
     for await (const game of games) {
         const whitePlayer = players.filter(obj => {return obj.playerID === game.whiteID})[0]
         const blackPlayer = players.filter(obj => {return obj.playerID === game.blackID})[0]
@@ -181,7 +183,9 @@ async function getPlayerData(playerID) {
         game.whiteName = whiteName.fName;
         game.blackName = blackName.fName;
     };
-    games.sort((a, b) => Date.parse(b.date) - Date.parse(a.date));
+    games.sort((a, b) =>
+        Date.parse(a.date) - Date.parse(b.date) || a.gameID - b.gameID
+    );
     player.games = games;
     const achievements = await db.all(`SELECT * FROM achievements WHERE playerID = ? AND relevant = TRUE`, playerID);
     player.achievements = achievements;
@@ -322,7 +326,9 @@ async function getTournamentData(tournamentSlug) {
         const score = player.wins + (player.draws/2);
         player.score = score;
     })
-    games.sort((a, b) => Date.parse(b.date) - Date.parse(a.date));
+    games.sort((a, b) =>
+        Date.parse(a.date) - Date.parse(b.date) || a.gameID - b.gameID
+    );
     tournament.games = games;
     return tournament;
 }

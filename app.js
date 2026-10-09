@@ -65,6 +65,4 @@ app.get('/tournaments/:id', asyncHandler(async (req, res) => {
     }
 }));
 
-app.listen(port, () => {
-    console.log(`Listening on port ${port}`);
-});
+(async () => { await dbFunctions.calcAllGamesElo(); app.listen(port, () => console.log(`Listening on port ${port}`)); })();

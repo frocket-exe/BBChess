@@ -86,8 +86,8 @@ async function calcAllGamesElo() {
     const players = await db.all(`SELECT playerID, fName, bbcElo FROM players`);
     const games = await db.all(`SELECT gameID, whiteID, blackID, result, date FROM games WHERE rated = 1`);
     for await (const player of players) {
-        const playerGames = await db.all(`SELECT gameID FROM games WHERE whiteID = ? OR blackID = ?`, player.playerID, player.playerID);
-        player.gamesPlayed = playerGames.length;
+        player.bbcElo = 1069;
+        player.gamesPlayed = 0;
     }
     games.sort((a, b) => Date.parse(a.date) - Date.parse(b.date));
     for await (const game of games) {
@@ -96,6 +96,8 @@ async function calcAllGamesElo() {
         const eloResults = calcElo(game, whitePlayer, blackPlayer);
         whitePlayer.bbcElo = eloResults[0];
         blackPlayer.bbcElo = eloResults[1];
+        whitePlayer.gamesPlayed ++;
+        blackPlayer.gamesPlayed ++;
     }
     for await (const player of players) {
         await db.run(`UPDATE players SET bbcElo = ? WHERE playerID = ?;`, player.bbcElo, player.playerID);
@@ -325,6 +327,4 @@ async function getTournamentData(tournamentSlug) {
     return tournament;
 }
 
-calcAllGamesElo()
-
-module.exports = {getPlayers, getPlayerData, slugToID, getTournaments, getTournamentData};
+module.exports = {getPlayers, getPlayerData, slugToID, getTournaments, getTournamentData, calcAllGamesElo};

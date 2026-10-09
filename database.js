@@ -325,5 +325,6 @@ async function getTournamentData(tournamentSlug) {
     return tournament;
 }
 
+calcAllGamesElo()
 
 module.exports = {getPlayers, getPlayerData, slugToID, getTournaments, getTournamentData};

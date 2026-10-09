@@ -184,7 +184,7 @@ async function getPlayerData(playerID) {
         game.blackName = blackName.fName;
     };
     games.sort((a, b) =>
-        Date.parse(a.date) - Date.parse(b.date) || a.gameID - b.gameID
+        Date.parse(b.date) - Date.parse(a.date) || b.gameID - a.gameID
     );
     player.games = games;
     const achievements = await db.all(`SELECT * FROM achievements WHERE playerID = ? AND relevant = TRUE`, playerID);
@@ -327,7 +327,7 @@ async function getTournamentData(tournamentSlug) {
         player.score = score;
     })
     games.sort((a, b) =>
-        Date.parse(a.date) - Date.parse(b.date) || a.gameID - b.gameID
+        Date.parse(b.date) - Date.parse(a.date) || b.gameID - a.gameID
     );
     tournament.games = games;
     return tournament;

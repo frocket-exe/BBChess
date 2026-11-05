@@ -302,8 +302,7 @@ async function getTournamentData(tournamentSlug) {
         player.losses = 0;
         player.draws = 0;
     }
-    players.sort((a, b) => parseInt(b.wins) - parseInt(a.wins));
-    players.sort((a, b) => parseInt(a.finalPosition) - parseInt(b.finalPosition));
+    // players.sort((a, b) => parseInt(a.finalPosition) - parseInt(b.finalPosition));
     tournament.players = players;
     const games = await db.all(`SELECT * FROM games WHERE tournamentID = ?`, tournament.tournamentID);
     games.forEach(game => {
@@ -327,6 +326,7 @@ async function getTournamentData(tournamentSlug) {
         const score = player.wins + (player.draws/2);
         player.score = score;
     })
+    players.sort((a, b) => parseFloat(b.score) - parseFloat(a.score));
     games.sort((a, b) =>
         Date.parse(b.date) - Date.parse(a.date) || b.gameID - a.gameID
     );

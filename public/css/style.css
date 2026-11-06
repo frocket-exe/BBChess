@@ -466,7 +466,7 @@ body.player-body{
     border-width: 3px;
     border-style: solid;
     border-color: rgb(60, 60, 60);
-    padding-bottom: 25px;
+    margin-bottom: 25px;
 }
 
 .tournament-card2 h3{
